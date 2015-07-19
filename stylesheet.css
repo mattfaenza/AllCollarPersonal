@@ -1,0 +1,14 @@
+#titleBox{
+	background-color: LightSteelBlue;
+	border-radius: 25px;
+    border: 3px solid #778899;
+}
+
+#title{
+	text-align: center;
+}
+
+.form-group{
+	text-align: left;
+}
+

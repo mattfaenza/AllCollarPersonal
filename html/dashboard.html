@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--our own css-->
+		<link rel="stylesheet" type="text/css" href="./css/stylesheet.css">
+		
+		<!--bootstrap cdn-->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	</head>
+
+	<body>
+		<!--html code goes here -->
+		<div id="cont" class="container">
+		
+			<div id="titleBox" class="jumbotron">
+				<h1 id="title">Dashboard for AllCollar</h1>
+			</div>
+			
+			<nav id="navBar" class="navbar navbar-default">
+			  <div class="container-fluid">
+			    <!-- Brand and toggle get grouped for better mobile display -->
+			    <div class="navbar-header">
+				    <form class="navbar-form navbar-left" role="search">
+				        <div id="nav-link" class="form-group">
+				          <a class="navbar-profile" href="#">Profile</a>
+			     		  <a class="navbar-admin" href="#">Admin Access</a>
+				          <input type="text" class="form-control" placeholder="Search">
+				          <button type="submit" class="btn btn-default">Submit</button>
+			        	  <a class="navbar-logout" href="#">Log out</a>
+				        </div>
+			      	</form>
+			    </div>
+			</nav>
+
+			<div id="summaryInfo">
+				<ul class="list-group">
+						<li class="list-group-item">First Name:<p id="firstName"></p></li>
+						<li class="list-group-item">Last Name:<p id="lastName"></p></li>
+						<li class="list-group-item">Email:<p id="email"></p></li>
+						<li class="list-group-item">Rating:<p id="rating"></p></li>
+						<li class="list-group-item">Recent Jobs:<p id="recentJobs"></p></li>
+				</ul>
+			</div>
+
+			<table id="newJobs" class="table table-striped">
+				<div class="container-fluid">
+					<tr>
+						<th>#</th>
+						<th>New Jobs</th>
+						<th>Wage</th>
+					</tr>
+				</div>
+			</table>
+	
+			
+
+			<table id="applicationStatus" class="table table-striped">
+				<tr>
+					<th>#</th>
+					<th>Jobs Applied</th>
+					<th>Statuses</th>
+				</tr>
+			</table>
+
+
+			 
+		</div>
+		
+		<!--jquery cdn-->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+	</body>
+</html>

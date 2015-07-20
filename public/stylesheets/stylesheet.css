@@ -12,3 +12,11 @@
 	text-align: left;
 }
 
+#nav-link > a{
+	margin-left: 80px;
+}
+
+.form-control {
+	margin-left: 90px;
+}
+

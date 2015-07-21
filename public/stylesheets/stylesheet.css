@@ -12,11 +12,20 @@
 	text-align: left;
 }
 
-#nav-link > a{
-	margin-left: 80px;
+#nav-link > li+li{
+	margin-left: 90px;
 }
 
-.form-control {
-	margin-left: 90px;
+#outContainer{
+	display: flex;
+}
+
+#profileInfo{
+	width: 300px;
+}
+
+#inContainer{
+	float: right;
+	width: 100%;
 }
 

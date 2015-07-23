@@ -5,45 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-//Set up to connect to MongoDB using Mongoose
-var mongoose = require('mongoose');
-mongoose.connect(' mongodb://groupuser:allCollar@ds053658.mongolab.com:53658/allcollardb');
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function (callback) {
-  // yay!
-});
-
-//Schemas go Mongoose/MongoDB go here
-var userSchema = new Schema({
-	username: String,
-	password: String,
-	fullName: { type: String, trim: true },
-	phoneNumber: { type: Number, max: 10, min: 9 },
-	locale: String,
-	resume: String,
-	organization: String,
-	privilege: String,
-	jobHistory: String,
-	jobApps: String,
-	hunterRating: { type: Number, max: 0, min: 5 },
-	employerRating: { type: Number, max: 0, min: 5 },
-	});
-	
-//Compiling Schema into a Model
-var User = mongoose.model('User', userSchema);
-
-//Example User
-
-var johndoe = new User ({
-  username: 'jdoe',
-  password: 'password'
-  fullName: 'John  Doe   ' ,
-});
-// Saving it to the database.  
-johndoe.save(function (err) {if (err) console.log ('Error on save!')});
-
 var login = require('./routes/login');
 var users = require('./routes/users');
 

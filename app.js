@@ -16,10 +16,13 @@ db.once('open', function (callback) {
 });
 
 //Schemas go Mongoose/MongoDB go here
-var userSchema = new Schema({
+var userSchema = new mongoose.Schema({
 	username: String,
 	password: String,
-	fullName: { type: String, trim: true },
+	name: {
+    first: String,
+    last: { type: String, trim: true }
+	},
 	phoneNumber: { type: Number, max: 10, min: 9 },
 	locale: String,
 	resume: String,
@@ -30,6 +33,21 @@ var userSchema = new Schema({
 	hunterRating: { type: Number, max: 0, min: 5 },
 	employerRating: { type: Number, max: 0, min: 5 },
 	});
+
+var jobSchema = new mongoose.Schema({
+	id: String,
+	title: String,
+	fullDesc: String,
+	reqSkills: String,
+	locale: String,
+	employer: String,
+	tagList: Array,
+	compensation: String,
+	length: String,
+	applicants: String,
+	isPositionFilled: Boolean,
+	isCompleted: Boolean,
+});
 	
 //Compiling Schema into a Model
 var User = mongoose.model('User', userSchema);

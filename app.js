@@ -5,7 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-
+var User = require('./AllCollar/models/user');
+var Job = require('./AllCollar/models/job');
 //Serving a web page
 var http = require('http');
 //Set up to connect to MongoDB using Mongoose
@@ -16,52 +17,13 @@ mongoose.connect(' mongodb://groupuser:allCollar@ds053658.mongolab.com:53658/all
 // port 5000.
 var theport = process.env.PORT || 5000;
 
-
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
   // yay!
 });
 
-//Schemas go Mongoose/MongoDB go here
-var userSchema = new mongoose.Schema({
-	username: String,
-	password: String,
-	name: {
-    first: String,
-    last: { type: String, trim: true }
-	},
-	phoneNumber: { type: Number, max: 10, min: 9 },
-	locale: String,
-	resume: String,
-	organization: String,
-	privilege: String,
-	jobHistory: String,
-	jobApps: String,
-	hunterRating: { type: Number, max: 0, min: 5 },
-	employerRating: { type: Number, max: 0, min: 5 }
-	});
-
-var jobSchema = new mongoose.Schema({
-	id: String,
-	title: String,
-	fullDesc: String,
-	reqSkills: String,
-	locale: String,
-	employer: String,
-	tagList: Array,
-	compensation: String,
-	length: String,
-	applicants: String,
-	isPositionFilled: Boolean,
-	isCompleted: Boolean
-});
-	
-//Compiling Schema into a Model
-var User = mongoose.model('User', userSchema);
-var Job = mongoose.model('Job', jobSchema);
-
-//Example User
+//Example Users
 
 var johndoe = new User ({
   username: 'jdoe',
@@ -69,14 +31,38 @@ var johndoe = new User ({
   name: 'John Doe'
 });
 
+// create a new user called chris
+var chris = new User({
+  name: 'Chris',
+  username: 'sevilayha',
+  password: 'password' 
+});
+
+//Example Jobs
+
 var softjob = new Job ({
   id: '1',
   title: 'Software Developer'
 });
 
+// call the custom method. this will just add -dude to his name
+// user will now be Chris-dude
+chris.dudify(function(err, name) {
+  if (err) throw err;
+
+  console.log('Your new name is ' + name);
+});
+
+// call the built-in save method to save to the database
+chris.save(function(err) {
+  if (err) throw err;
+
+  console.log('User saved successfully!');
+});
+
 // Saving it to the database.  
-johndoe.save(function (err) {if (err) console.log ('Error on save!')});
-softjob.save(function (err) {if (err) console.log ('Error on save!')});
+//johndoe.save(function (err) {if (err) console.log ('Error on save!')});
+//softjob.save(function (err) {if (err) console.log ('Error on save!')});
 
 var login = require('./routes/login');
 var users = require('./routes/users');
@@ -97,7 +83,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', login);
 app.use('/users', users);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

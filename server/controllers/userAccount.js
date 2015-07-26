@@ -135,14 +135,15 @@ AccountController.prototype.resetPassword = function (username, callback) {
         acctctrl.sessionData.passwordResetHash = passwordResetHash;
         acctctrl.sessionData.usernameWhoRequestedPasswordReset = username;
 
-        acctctrl.mailer.sendPasswordResetHash(username, passwordResetHash);
+        acctctrl.resetMailer.sendPasswordResetHash(username, passwordResetHash);
 
         return callback(err, new acctctrl.ApiResponse({ success: true, extras: { passwordResetHash: passwordResetHash } }));
     })
 };
 
+//This method is called when the email link is clicked, to open a special web page to begin the password reset process
 AccountController.prototype.resetPasswordFinal = function (username, newPassword, passwordResetHash, callback) {
-    var me = this;
+    var acctctrl = this;
     if (!acctctrl.sessionData || !acctctrl.sessionData.passwordResetHash) {
         return callback(null, new acctctrl.ApiResponse({ success: false, extras: { msg: acctctrl.ApiMessages.PASSWORD_RESET_EXPIRED } }));
     }

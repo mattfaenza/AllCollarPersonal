@@ -23,10 +23,10 @@
 		<div id="navbar">
 			<ul id="nav-link" class="nav nav-pills">
 			  <li class="active"><a href="#">Dashboard</a></li>
-			  <li><a href="#">Profile Settings</a></li>
-		   	  <li><a href="#">Search for a Job</a></li>
+			  <li><a href="/profile">Profile Settings</a></li>
+		   	  <li><a href="/search">Search for a Job</a></li>
 			  <li><a href="#">Admin Access</a></li>
-			  <li><a href="#">Logout</a></li>			  
+			  <li><a href="/login">Logout</a></li>			  
 			</ul><br>
 		</div>
 
@@ -90,6 +90,33 @@
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<script>
+			$(document).ready(function(){
+				$.get('http://localhost:5000/dashboard/jobs', function(data) {
+					console.log(data);
+
+					var table = $('#newJobs');
+					for (var i = 0; i < data.length; i++) {
+
+						var newEntry = $('<tr><th></th><th></th><th></th></tr>'),
+							headers = newEntry.children(),
+							th_one = headers.eq(0),
+							th_two = headers.eq(1),
+							th_three = headers.eq(2);
+
+						th_one.text(i);
+						th_two.text(data[i].title);
+						th_three.text(data[i].wage);
+						table.append(newEntry);
+					}
+				});
+
+			});
+				
+
+
+		</script>
 	</body>
 </html>

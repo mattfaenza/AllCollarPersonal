@@ -9,6 +9,7 @@ var login = require('./routes/login');
 var users = require('./routes/users');
 var dash = require('./routes/dashboard');
 var search = require('./routes/search');
+var jobs = require('./routes/jobs');
 var app = express();
 
 // view engine setup
@@ -27,6 +28,7 @@ app.use('/', login);
 app.use('/users', users);
 app.use('/dashboard', dash);
 app.use('/search', search);
+app.use('/jobs', jobs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

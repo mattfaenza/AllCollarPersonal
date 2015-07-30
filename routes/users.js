@@ -18,6 +18,7 @@ router.get('/:userid', function(req, res){
 router.get('/', function(req,res){
 	/* Should redirect to the current user's profile if an id isn't specified*/
 	res.send("User's profile");
+	//res.redirect('/users/(current user id)')
 });
 
 module.exports = router;

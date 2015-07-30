@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 router.get('/', function(req,res){
-	res.send("User's profile");
+	res.send("search page");
 });
 
 module.exports = router;

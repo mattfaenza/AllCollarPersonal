@@ -43,7 +43,8 @@ var chris = new User({
 
 var softjob = new Job ({
   id: '1',
-  title: 'Software Developer'
+  title: 'Software Developer',
+  compensation: '400'
 });
 
 // call the custom method. this will just add -dude to his name

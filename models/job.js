@@ -13,7 +13,6 @@ var jobSchema = new mongoose.Schema({
 	applicants: String,
 	isPositionFilled: Boolean,
 	isCompleted: Boolean
-	wage: String
 });
 
 // on every save, add the date

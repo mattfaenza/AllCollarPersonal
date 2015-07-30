@@ -22,3 +22,7 @@ var getJobData = function (res) {
 
 // make this available to our users in our Node applications
 module.exports.getJobData = getJobData;
+
+var getUserData = function (res) {
+	
+}

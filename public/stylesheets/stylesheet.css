@@ -22,6 +22,7 @@
 
 #profileInfo{
 	width: 300px;
+	height: 200px;
 }
 
 #inContainer{
@@ -29,3 +30,21 @@
 	width: 100%;
 }
 
+.clickable-row {
+	cursor: pointer;
+	background: #fff !important;
+}
+
+.clickable-row:hover {
+	background: rgba(52, 152, 219,0.1) !important;
+}
+
+#newJobsContainer {
+	max-height: 300px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+table {
+	margin-bottom: 0px !important;
+}

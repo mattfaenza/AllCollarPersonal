@@ -48,3 +48,20 @@
 table {
 	margin-bottom: 0px !important;
 }
+
+#contactInfo {
+	width: 200px;
+	height: 200px;
+}
+
+#resume > input {
+	display: inline;
+}
+
+#resume {
+	margin-bottom: 10px;
+}
+
+#details > p {
+	display: inline;
+}

@@ -12,6 +12,7 @@ var flash = require('connect-flash');
 var User = require('./models/user');
 var Job = require('./models/job');
 
+
 //Serving a web page
 var http = require('http');
 
@@ -24,6 +25,8 @@ mongoose.connect('mongodb://groupuser:allCollar@ds053658.mongolab.com:53658/allc
 var theport = process.env.PORT || 5000;
 
 var db = mongoose.connection;
+var app = express();
+
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
   // yay!
@@ -84,7 +87,6 @@ var dash = require('./routes/dashboard');
 var search = require('./routes/search');
 var jobs = require('./routes/jobs');
 
-var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

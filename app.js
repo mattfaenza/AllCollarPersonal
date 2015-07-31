@@ -4,12 +4,17 @@ var favicon = require('./node_modules/serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+
+var passport = require('passport');
+var flash = require('connect-flash');
 
 var User = require('./models/user');
 var Job = require('./models/job');
 
 //Serving a web page
 var http = require('http');
+
 //Set up to connect to MongoDB using Mongoose
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://groupuser:allCollar@ds053658.mongolab.com:53658/allcollardb');
@@ -22,7 +27,10 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function (callback) {
   // yay!
+  console.log('Connected to DB');
 });
+
+require('./config/passport')(passport); // pass passport for configuration
 
 //Example Users
 
@@ -47,13 +55,6 @@ var softjob = new Job ({
   compensation: '400'
 });
 
-// call the custom method. this will just add -dude to his name
-// user will now be Chris-dude
-chris.dudify(function(err, name) {
-  if (err) throw err;
-
-  console.log('Your new name is ' + name);
-});
 
 // call the built-in save method to save to the database
 chris.save(function(err) {
@@ -65,6 +66,16 @@ chris.save(function(err) {
 // Saving it to the database.  
 johndoe.save(function (err) {if (err) console.log ('Error on save!')});
 softjob.save(function (err) {if (err) console.log ('Error on save!')});
+
+// required for passport
+app.use(session({ secret: 'mySecretKey' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+ // load our routes and pass in our app and fully configured passport
+//require('./app/routes.js')(app, passport);
+
 
 var login = require('./routes/login');
 var register = require('./routes/register');
@@ -125,7 +136,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-app.listen(5000);
-
+app.listen(theport);
+console.log('The magic happens on port ' + theport);
 
 module.exports = app;

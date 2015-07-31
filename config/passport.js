@@ -37,7 +37,7 @@ module.exports = function(passport) {
 
             // check to see if theres already a user with that username
             if (user) {
-                return done(null, false, req.flash('signupMessage', 'That username is already taken.'));
+                return done(null, false, req.flash('registerMessage', 'That username is already taken.'));
             } else {
 
                 // if there is no user with that username
@@ -45,13 +45,14 @@ module.exports = function(passport) {
                 var newUser = new User();
 
                 // set the user's local credentials
-                newUser.local.username    = username;
+                newUser.local.username = username;
                 newUser.local.password = newUser.generateHash(password);
 
                 // save the user
                 newUser.save(function(err) {
                     if (err)
                         throw err;
+					console.log(user.username +' saved successfully!');
                     return done(null, newUser);
                 });
             }

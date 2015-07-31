@@ -7,7 +7,12 @@ module.exports = function(app, passport) {
     });
 
     // process the login form
-    // app.post('/login', do all our passport stuff here);
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/dashboard', // redirect to the secure dashboard section
+        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+
 
 //Register
     app.get('/register', function(req, res) {
@@ -16,8 +21,12 @@ module.exports = function(app, passport) {
         res.render('register.ejs', { message: req.flash('registerMessage') });
     });
 
-    // process the register form
-    // app.post('/register', do all our passport stuff here);
+     // process the signup form
+    app.post('/signup', passport.authenticate('local-signup', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
 
 //Dashboard
     app.get('/dashboard', isLoggedIn, function(req, res) {

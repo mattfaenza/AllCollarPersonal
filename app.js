@@ -73,10 +73,6 @@ var dash = require('./routes/dashboard');
 var search = require('./routes/search');
 var jobs = require('./routes/jobs');
 
-
-
-
->>>>>>> Mongoose-Attempt2
 var app = express();
 
 // view engine setup

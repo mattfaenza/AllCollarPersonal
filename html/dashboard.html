@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<!--our own css-->
-		<link rel="stylesheet" type="text/css" href="./stylesheets/stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css">
 		
 		<!--bootstrap cdn-->
 		<!-- Latest compiled and minified CSS -->
@@ -97,44 +97,35 @@
 		<script>
 			$(document).ready(function(){
 				$.get('http://localhost:5000/dashboard/jobs', function(data) {
-					console.log(data);
-
+					var count = 1;
 					var newJobs = $('#newJobs');
 					for (var i = 0; i < data.length; i++) {
 
-						var newEntry = $('<tr class="clickable-row"><th style="width:10%"></th><th style="width:50%"></th><th></th></tr>'),
-							headers = newEntry.children(),
-							th_one = headers.eq(0),
-							th_two = headers.eq(1),
-							th_three = headers.eq(2);
+						if (data[i].isCompleted == false) {
+							var newEntry = $('<tr class="clickable-row"><th style="width:10%"></th><th style="width:50%"></th><th></th></tr>'),
+								headers = newEntry.children(),
+								th_one = headers.eq(0),
+								th_two = headers.eq(1),
+								th_three = headers.eq(2);
 
-						th_one.text(i);
-						th_two.text(data[i].title);
-						th_three.text(data[i].compensation);
-						newJobs.append(newEntry);
+							
+							th_one.text(count);
+							th_two.text(data[i].title);
+							th_three.text(data[i].compensation);
+							newEntry.data('id', data[i]['_id']);
+							newJobs.append(newEntry);
+							count += 1;
+						}
+
 					}
 
-				// 	var jobApplied = $('#newJobs');
-				// 	for (var i = 0; i < data.length; i++) {
-
-				// 		var count = 0;
-				// 		var newEntry = $('<tr><th></th><th></th><th></th></tr>'),
-				// 			headers = newEntry.children(),
-				// 			th_one = headers.eq(0),
-				// 			th_two = headers.eq(1),
-				// 			th_three = headers.eq(2);
-
-				// 		if ()
-				// 		th_one.text(count);
-				// 		th_two.text(data[i].title);
-				// 		th_three.text(data[i].);
-				// 		table.append(newEntry);
-
 					$(".clickable-row").click(function() {
-						window.document.location = "/jobInfo";
+						window.document.location = "/dashboard/jobInfo/" + $(this).data('id');
 					});
-
 				});
+
+
+
 				
 			});
 		</script>

@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
 
+var jobSchema = new mongoose.Schema({
+	number: String,
+	title: String,
+	wage: String
+});
+
 var getJobData = function (res) {
-	var jobSchema = new mongoose.Schema({
-		number: String,
-		title: String,
-		wage: String
-	});
 
 	var Job;
 	if (mongoose.models.jobs) {
@@ -20,8 +21,24 @@ var getJobData = function (res) {
 
 }
 
+var getJobInfo = function (res, id) {
+
+	var Job;
+	if (mongoose.models.jobs) {
+		Job = mongoose.model('jobs');
+	} else {
+		Job = mongoose.model('jobs', jobSchema);
+	}
+
+	Job.findOne({"_id":id},function(err, jobs) {
+		res.json(jobs);
+	});
+}
+
 // make this available to our users in our Node applications
 module.exports.getJobData = getJobData;
+module.exports.getJobInfo = getJobInfo;
+
 
 var getUserData = function (res) {
 	

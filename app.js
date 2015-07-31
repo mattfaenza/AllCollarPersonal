@@ -67,6 +67,7 @@ johndoe.save(function (err) {if (err) console.log ('Error on save!')});
 softjob.save(function (err) {if (err) console.log ('Error on save!')});
 
 var login = require('./routes/login');
+var register = require('./routes/register');
 var users = require('./routes/users');
 var dash = require('./routes/dashboard');
 var search = require('./routes/search');
@@ -91,6 +92,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', login);
+app.use('/register', register);
 app.use('/users', users);
 app.use('/dashboard', dash);
 app.use('/search', search);

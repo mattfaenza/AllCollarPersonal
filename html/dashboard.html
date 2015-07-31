@@ -23,10 +23,10 @@
 		<div id="navbar">
 			<ul id="nav-link" class="nav nav-pills">
 			  <li class="active"><a href="#">Dashboard</a></li>
-			  <li><a href="#">Profile Settings</a></li>
-		   	  <li><a href="#">Search for a Job</a></li>
+			  <li><a href="/profile">Profile Settings</a></li>
+		   	  <li><a href="/search">Search for a Job</a></li>
 			  <li><a href="#">Admin Access</a></li>
-			  <li><a href="#">Logout</a></li>			  
+			  <li><a href="/login">Logout</a></li>			  
 			</ul><br>
 		</div>
 
@@ -59,15 +59,17 @@
 			</div>
 
 			<div id="inContainer" class="container-fluid">
-				<table id="newJobs" class="table table-striped">
-					<div>
-						<tr>
-							<th>#</th>
-							<th>New Jobs</th>
-							<th>Wage</th>
-						</tr>
-					</div>
+				<table class="table table-striped" style="margin-bottom: 0px">
+					<tr>
+						<th style="width:10%">#</th>
+						<th style="width:50%">New Jobs</th>
+						<th>Compensation</th>
+					</tr>
 				</table>
+				<div id="newJobsContainer">
+					<table id="newJobs" class="table table-striped">
+					</table>
+				</div>
 		
 				
 
@@ -90,6 +92,51 @@
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<script>
+			$(document).ready(function(){
+				$.get('http://localhost:5000/dashboard/jobs', function(data) {
+					console.log(data);
+
+					var newJobs = $('#newJobs');
+					for (var i = 0; i < data.length; i++) {
+
+						var newEntry = $('<tr class="clickable-row"><th style="width:10%"></th><th style="width:50%"></th><th></th></tr>'),
+							headers = newEntry.children(),
+							th_one = headers.eq(0),
+							th_two = headers.eq(1),
+							th_three = headers.eq(2);
+
+						th_one.text(i);
+						th_two.text(data[i].title);
+						th_three.text(data[i].compensation);
+						newJobs.append(newEntry);
+					}
+
+				// 	var jobApplied = $('#newJobs');
+				// 	for (var i = 0; i < data.length; i++) {
+
+				// 		var count = 0;
+				// 		var newEntry = $('<tr><th></th><th></th><th></th></tr>'),
+				// 			headers = newEntry.children(),
+				// 			th_one = headers.eq(0),
+				// 			th_two = headers.eq(1),
+				// 			th_three = headers.eq(2);
+
+				// 		if ()
+				// 		th_one.text(count);
+				// 		th_two.text(data[i].title);
+				// 		th_three.text(data[i].);
+				// 		table.append(newEntry);
+
+					$(".clickable-row").click(function() {
+						window.document.location = "/jobInfo";
+					});
+
+				});
+				
+			});
+		</script>
 	</body>
 </html>

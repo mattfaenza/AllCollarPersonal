@@ -68,13 +68,12 @@ softjob.save(function (err) {if (err) console.log ('Error on save!')});
 
 var login = require('./routes/login');
 var users = require('./routes/users');
-<<<<<<< HEAD
 var dash = require('./routes/dashboard');
 var search = require('./routes/search');
 var jobs = require('./routes/jobs');
-=======
 
-var dashboard = require('./routes/dashboard');
+
+
 
 >>>>>>> Mongoose-Attempt2
 var app = express();
@@ -93,14 +92,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', login);
 app.use('/users', users);
-<<<<<<< HEAD
 app.use('/dashboard', dash);
 app.use('/search', search);
 app.use('/jobs', jobs);
-=======
-
-app.use('/dashboard', dashboard);
->>>>>>> Mongoose-Attempt2
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--our own css-->
+		<link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css">
+		
+		<!--bootstrap cdn-->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	</head>
+
+	<body>
+		<!--html code goes here -->
+		<div id="cont" class="container">
+		
+			<div id="titleBox" class="jumbotron">
+				<h1 id="title">Information For a Job</h1>
+			</div>
+		
+			<div id="navbar">
+				<ul id="nav-link" class="nav nav-pills">
+				  <li><a href="/dashboard">Dashboard</a></li>
+				  <li><a href="/profile">Profile Settings</a></li>
+			   	  <li><a href="/search">Search for a Job</a></li>
+				  <li><a href="#">Admin Access</a></li>
+				  <li><a href="/login">Logout</a></li>			  
+				</ul><br>
+			</div>
+			
+			<div id="outContainer">
+				<div id="contactInfo" class="container-fluid well span6">
+					<h4>Contact Us</h4></br>
+					Tel:
+					<p id="tel"></p>
+					Email:
+					<p id="email"></p>
+				</div>
+
+				<div id="inContainer" class="container-fluid">
+					<form id="resume" action="demo_form.asp">
+						<input type="file" name="pic" accept=""></input>
+						<input type="submit"></input>
+					</form>
+
+					<div id="details">
+						Title:
+						<P id="name"></p></br></br>
+						Description:
+						<P id="description"></p></br></br>
+						Requirements:
+						<P id="requirements"></p></br></br>
+						Compensation:
+						<P id="compensation"></p></br></br>
+						Location:
+						<P id="location"></p></br></br>
+						Length
+						<P id="length"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--jquery cdn-->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<script>
+			$(document).ready(function(){
+				var index = location.pathname.lastIndexOf("/");
+				var id = location.pathname.substring(index + 1, location.pathname.length);
+				$.get('http://localhost:5000/dashboard/jobData/' + id, function(data) {
+					$('#tel').text(data.tel);
+					$('#email').text(data.email);
+					$('#name').text(data.title);
+					$('#description').text(data.fullDesc);
+					$('#requirements').text(data.reqSkill);
+					$('#compensation').text(data.compensation);
+					$('#location').text(data.location);
+					$('#length').text(data.length);
+				});
+	
+			});
+		</script>
+	</body>
+</html>

@@ -12,6 +12,8 @@ var jobSchema = new mongoose.Schema({
 	length: String,
 	applicants: String,
 	isPositionFilled: Boolean,
+	//the username of the user that has been hired
+	userHired: String,
 	isCompleted: Boolean
 });
 

@@ -37,38 +37,38 @@ require('./config/passport')(passport); // pass passport for configuration
 
 //Example Users
 
-var johndoe = new User ({
-  username: 'jdoe',
-  password: 'password',
-  name: 'John Doe'
-});
+// var johndoe = new User ({
+//   username: 'jdoe',
+//   password: 'password',
+//   name: 'John Doe'
+// });
 
-// create a new user called chris
-var chris = new User({
-  name: 'Chris',
-  username: 'sevilayha',
-  password: 'password' 
-});
+// // create a new user called chris
+// var chris = new User({
+//   name: 'Chris',
+//   username: 'sevilayha',
+//   password: 'password' 
+// });
 
-//Example Jobs
+// //Example Jobs
 
-var softjob = new Job ({
-  id: '1',
-  title: 'Software Developer',
-  compensation: '400'
-});
+// var softjob = new Job ({
+//   id: '1',
+//   title: 'Software Developer',
+//   compensation: '400'
+// });
 
 
-// call the built-in save method to save to the database
-chris.save(function(err) {
-  if (err) throw err;
+// // call the built-in save method to save to the database
+// chris.save(function(err) {
+//   if (err) throw err;
 
-  console.log('User saved successfully!');
-});
+//   console.log('User saved successfully!');
+// });
 
-// Saving it to the database.  
-johndoe.save(function (err) {if (err) console.log ('Error on save!')});
-softjob.save(function (err) {if (err) console.log ('Error on save!')});
+// // Saving it to the database.  
+// johndoe.save(function (err) {if (err) console.log ('Error on save!')});
+// softjob.save(function (err) {if (err) console.log ('Error on save!')});
 
 // required for passport
 app.use(session({ secret: 'mySecretKey' })); // session secret

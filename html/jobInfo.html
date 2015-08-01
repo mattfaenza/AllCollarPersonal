@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<!--our own css-->
-		<link rel="stylesheet" type="text/css" href="./stylesheets/stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="../public/stylesheets/stylesheet.css">
 		
 		<!--bootstrap cdn-->
 		<!-- Latest compiled and minified CSS -->
@@ -16,14 +16,14 @@
 		<div id="cont" class="container">
 		
 			<div id="titleBox" class="jumbotron">
-				<h1 id="title">Information For a Job</h1>
+				<h1 id="title">Job Information</h1>
 			</div>
 		
 			<div id="navbar">
 				<ul id="nav-link" class="nav nav-pills">
 				  <li><a href="/dashboard">Dashboard</a></li>
 				  <li><a href="/profile">Profile Settings</a></li>
-			   	  <li><a href="/search">Search for a Job</a></li>
+			   	  <li class="active"><a href="/search">Search for a Job</a></li>
 				  <li><a href="#">Admin Access</a></li>
 				  <li><a href="/login">Logout</a></li>			  
 				</ul><br>
@@ -40,11 +40,13 @@
 
 				<div id="inContainer" class="container-fluid">
 					<form id="resume" action="demo_form.asp">
+						<label for="pic">Attach Your Resume:</label>
 						<input type="file" name="pic" accept=""></input>
-						<input type="submit"></input>
-					</form>
+						<button type="submit">Submit</button>
+					</form></br>
 
 					<div id="details">
+						<h4><b>Job Details</b></h4></br>
 						Title:
 						<P id="name"></p></br></br>
 						Description:
@@ -55,7 +57,7 @@
 						<P id="compensation"></p></br></br>
 						Location:
 						<P id="location"></p></br></br>
-						Length
+						Work Duration
 						<P id="length"></p>
 					</div>
 				</div>

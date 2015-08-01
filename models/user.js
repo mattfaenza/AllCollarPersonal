@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
 	username: String,
+	//Since we don't want to store passwords explicitly
 	passwordHash: String,
 	passwordSalt: String,
 	email: String,
@@ -11,12 +12,17 @@ var userSchema = new mongoose.Schema({
 	},
 	phoneNumber: { type: Number, max: 10, min: 9 },
 	locale: String,
+	//should be represented as a file
 	resume: String,
 	organization: String,
 	privilege: String,
-	jobHistory: String,
-	jobApps: String,
+	//list of jobs completed (by job id)
+	jobHistory: Array,
+	//list of jobs applied to by user - foreign keys for job id
+	jobApps: Array,
+	//Rating as an employee - avergaed
 	hunterRating: { type: Number, max: 0, min: 5 },
+	//Rating as an employer - averaged
 	employerRating: { type: Number, max: 0, min: 5 }
 	});
 

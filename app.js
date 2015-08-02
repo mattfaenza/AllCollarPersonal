@@ -87,7 +87,6 @@ var dash = require('./routes/dashboard');
 var search = require('./routes/search');
 var jobs = require('./routes/jobs');
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -100,12 +99,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', login);
-app.use('/register', register);
-app.use('/users', users);
-app.use('/dashboard', dash);
-app.use('/search', search);
-app.use('/jobs', jobs);
+//app.use('/', login);
+//app.use('/register', register);
+//app.use('/users', users);
+//app.use('/dashboard', dash);
+//app.use('/search', search);
+//app.use('/jobs', jobs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

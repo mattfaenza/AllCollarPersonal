@@ -15,9 +15,6 @@ var jobSchema = new mongoose.Schema({
 	//the username of the user that has been hired - a foreign key for username
 	userHired: String, //another username foreign key
 	isCompleted: Boolean
-	phoneNumber: { type: Number, max: 10, min: 9 },
-	//can we not use the email from the user schema??
-	email: String
 });
 
 // on every save, add the date

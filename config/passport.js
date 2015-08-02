@@ -15,9 +15,10 @@ module.exports = function(passport) {
             done(err, user);
         });
     });
-	//not sure if this is needed since we aren't overrriding anything, keeping it for now to be safe
+	
     passport.use('local-signup', new LocalStrategy({
         // by default, local strategy uses username and password
+		//not sure if these fields are needed since we aren't overrriding anything? keeping it for now to be safe
         usernameField : 'username',
 		emailField : 'email',
         passwordField : 'password',
@@ -39,6 +40,7 @@ module.exports = function(passport) {
             // check to see if theres already a user with that username
             if (user) {
                 return done(null, false, req.flash('registerMessage', 'That username is already taken.'));
+				
             } else {
 				// check to see if theres already a user with that email
 				User.findone({ 'local.email' :  email }, function(err, user) {
@@ -47,6 +49,8 @@ module.exports = function(passport) {
 						return done(err);
 					if (user) {
 						return done(null, false, req.flash('registerMessage', 'That username is already taken.'));
+						}
+					}
 				// if there is no user with that username or email
                 // create the user
                 var newUser = new User();
@@ -69,9 +73,10 @@ module.exports = function(passport) {
         });
 
     }));
-	//not sure if this is needed since we aren't overrriding anything, keeping it for now to be safe
+	
 	passport.use('local-login', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with username
+		//not sure if these fields are needed since we aren't overrriding anything? keeping it for now to be safe
         usernameField : 'username',
         passwordField : 'password',
         passReqToCallback : true // allows us to pass back the entire request to the callback

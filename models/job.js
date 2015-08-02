@@ -6,15 +6,17 @@ var jobSchema = new mongoose.Schema({
 	fullDesc: String,
 	reqSkills: String,
 	locale: String,
-	employer: String, //username foreign key
+	employer: String,
 	tagList: Array,
 	compensation: String,
 	length: String,
-	applicants: Array, //foreign keys for user:usernames
+	applicants: String,
 	isPositionFilled: Boolean,
-	//the username of the user that has been hired - a foreign key for username
-	userHired: String, //another username foreign key
-	isCompleted: Boolean
+	//the username of the user that has been hired
+	userHired: String,
+	isCompleted: Boolean,
+	phoneNumber: { type: Number, max: 10, min: 9 },
+	email: String
 });
 
 // on every save, add the date

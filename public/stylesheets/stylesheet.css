@@ -22,8 +22,11 @@
 
 #profileInfo{
 	width: 300px;
-	height: 200px;
+	height: 300px;
+	overflow-x: scroll;
+	overflow-y: scroll;  
 }
+
 
 #inContainer{
 	float: right;
@@ -45,14 +48,24 @@
 	overflow-y: scroll;
 }
 
+#inContainer {
+	height: 300px;
+	margin-left: 20px;
+	overflow-x: scroll;
+	overflow-y: scroll; 
+}
+
 #inContainer > table {
 	margin-bottom: 0px !important;
 }
 
 #contactInfo {
-	width: 200px;
-	height: 200px;
+	width: 300px;
+	height: 220px;
+	overflow-x: scroll;
+	overflow-y: scroll;  
 }
+
 
 #resume > input {
 	display: inline;

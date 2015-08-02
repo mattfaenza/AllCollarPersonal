@@ -23,10 +23,10 @@
 		<div id="navbar">
 			<ul id="nav-link" class="nav nav-pills">
 			  <li class="active"><a href="#">Dashboard</a></li>
-			  <li><a href="#">Profile Settings</a></li>
-		   	  <li><a href="#">Search for a Job</a></li>
+			  <li><a href="/profile">Profile Settings</a></li>
+		   	  <li><a href="/search">Search for a Job</a></li>
 			  <li><a href="#">Admin Access</a></li>
-			  <li><a href="#">Logout</a></li>			  
+			  <li><a href="/login">Logout</a></li>			  
 			</ul><br>
 		</div>
 
@@ -35,39 +35,62 @@
 				<div class="row-fluid">
 						<ul class="nav">
 							<li>
-								First, last name: 
+								<!-- First, last name: --> 
 								<p id="name" class="info"></p>
 							</li>
 							<li>
-								Email:
+								<!-- Email: -->
 								<p id="email" class="info"></p>
 							</li>
 							<li>
-								Locale:
+								<!-- Locale: -->
 								<p id="locale" class="info"></p>
 							</li>
 							<li>
-								Rating:
-								<p id="rating" class="info"></p>
+								<!-- Hunter Rating: -->
+								<p id="hunterRating" class="info"></p>
 							</li>
 							<li>
-								Recent job:
-								<p id="recentJob" class="info"></p>
+								<!-- Employer Rating: -->
+								<p id="employerRating" class="info"></p>
+							</li>
+							<li>
+								<!-- Recent job: -->
+								<p id="recentJob" class="info"></p></br>
 							</li>
 						</ul>
-					</div>
+				</div>
+
+				<form id="resume" action="demo_form.asp">
+					<input type="file" name="resume" accept=""></input>
+					<input type="submit" onclick="upload()"></input>
+				</form>
 			</div>
 
 			<div id="inContainer" class="container-fluid">
-				<table id="newJobs" class="table table-striped">
-					<div>
-						<tr>
-							<th>#</th>
-							<th>New Jobs</th>
-							<th>Wage</th>
-						</tr>
-					</div>
+				<table class="table table-striped" style="margin-bottom: 0px">
+					<tr>
+						<th style="width:10%">#</th>
+						<th style="width:50%">New Jobs</th>
+						<th>Compensation</th>
+					</tr>
 				</table>
+				<div id="newJobsContainer">
+					<table id="newJobs" class="table table-striped">
+						<% var count = 1 %>
+						<% for (var i = 0; i < jobs.length; i++) { %>
+							<% var job = jobs[i]; %>
+							<% if (job.isCompleted == false || job.isCompleted == null) { %>
+								<tr class="clickable-row" onclick=<%= "redirect('" + job._id + "')" %>>
+									<th style="width:10%"><%= count %></th>
+									<th style="width:50%"><%= job.title %></th>
+									<th><%= job.compensation %></th>
+								</tr>
+								<% count += 1 %>
+							<% } %>
+						<% } %>
+					</table>
+				</div>
 		
 				
 
@@ -90,6 +113,62 @@
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<script>
+			function redirect(id) {
+				window.document.location = "/jobInfo/" + id;
+			}
+
+			$(document).ready(function(){
+
+				// $.get('http://localhost:5000/dashboard/user', function(data) {
+
+				// 	$('#name').text("Name: " + data.name.first + ", " + data.name.last);
+				// 	$('#email').text("Email: " + data.email);
+				// 	$('#locale').text("Locale: " + data.locale);
+				// 	$('#hunterRating').text("Hunter Rating: " + data.hunterRating);
+				// 	$('#employerRating').text("Employer Rating: " + data.employerRating);
+				// 	$('#recentJob').text("Job History: " + data.jobHistory);
+					
+				// 	var jobApp = $('#applicationStatus');
+				// 	var count = 1;
+
+				// 	for (var i = 0; i < data.jobApps.length; i++) {
+
+				// 		var newEntry = $('<tr class="clickable-row"><th style="width:10%"></th><th style="width:50%"></th><th></th></tr>'),
+				// 			headers = newEntry.children(),
+				// 			th_one = headers.eq(0),
+				// 			th_two = headers.eq(1),
+				// 			th_three = headers.eq(2);
+
+				// 		th_one.text(count);
+				// 		th_two.text(data.jobApps[i].title);
+
+				// 		console.log(i);
+
+				// 		if (data.jobApps[i].userHired == "") {
+				// 			th_three.text("Pending");
+				// 		} 
+				// 		else if (data.username == data.jobApps[i].userHired) {
+				// 			console.log(data.username);
+				// 			console.log(data.jobApps[i].userHired);
+				// 			th_three.text("Hired");
+				// 		} 
+				// 		else {
+				// 			th_three.text("Refused");
+				// 		}
+				// 		newEntry.data('id', data.jobApps[i]['_id']);
+				// 		jobApp.append(newEntry);
+				// 		count += 1;
+				// 	}
+
+				// 	$(".clickable-row").click(function() {
+				// 		window.document.location = "/dashboard/jobInfo/" + $(this).data('id');
+				// 	});
+				// });
+				// });
+			});
+		</script>
 	</body>
 </html>

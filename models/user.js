@@ -3,8 +3,9 @@ var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = new mongoose.Schema({
 	username: String,
-	//acceptable since it's hashed before it's stored
-	password: String,
+	//Since we don't want to store passwords explicitly
+	passwordHash: String,
+	passwordSalt: String,
 	email: String,
 	name: {
     first: String,

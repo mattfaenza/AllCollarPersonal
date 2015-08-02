@@ -16,7 +16,7 @@ module.exports = function(passport) {
         });
     });
 	
-    passport.use('local-signup', new LocalStrategy({
+    passport.use('local-register', new LocalStrategy({
         // by default, local strategy uses username and password
 		//not sure if these fields are needed since we aren't overrriding anything? keeping it for now to be safe
         usernameField : 'username',
@@ -70,9 +70,9 @@ module.exports = function(passport) {
 
         });    
 
-        });
+        };
 
-    }));
+    });
 	
 	passport.use('local-login', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with username
@@ -103,5 +103,4 @@ module.exports = function(passport) {
 
     }));
 
-};
 };

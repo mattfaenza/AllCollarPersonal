@@ -1,6 +1,5 @@
-
 module.exports = function(app, passport) {
-
+dashboard = require('./models/dashboard.js')
 //Login
     app.get('/', function(req, res) {
         res.render('index.ejs'); // load the index.ejs file
@@ -30,9 +29,11 @@ module.exports = function(app, passport) {
 
 //Dashboard
     app.get('/dashboard', isLoggedIn, function(req, res) {
-        res.render('dashboard.ejs', {
-            user : req.user // get the user out of session and pass to template
-        });
+        dashboard.getJobData(res, req);
+    });
+
+    app.get('/jobInfo/:id', isLoggedIn, function(req, res) {
+        dashboard.getJobInfo(res, req);
     });
 	
 //Profile
@@ -49,22 +50,22 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
     });
+
+        // process the signup form
+    app.post('/signup', passport.authenticate('local-signup', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
 };
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
     // if user is authenticated in the session, carry on 
-    if (req.isAuthenticated())
+    // if (req.isAuthenticated())
         return next();
 
-    // if they aren't redirect them to the home page
-    res.redirect('/');
+    // // if they aren't redirect them to the home page
+    // res.redirect('/');
 }
-
-    // process the signup form
-    app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));

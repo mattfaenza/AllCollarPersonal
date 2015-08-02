@@ -21,10 +21,10 @@ module.exports = function(app, passport) {
         res.render('register.ejs', { message: req.flash('registerMessage') });
     });
 
-     // process the signup form
-    app.post('/signup', passport.authenticate('local-signup', {
+     // process the register form
+    app.post('/register', passport.authenticate('local-register', {
         successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureRedirect : '/register', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
 

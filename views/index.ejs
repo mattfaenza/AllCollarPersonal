@@ -13,13 +13,36 @@
 	</head>
 
 	<body>
+	<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '404711866388396',
+      xfbml      : true,
+      version    : 'v2.4'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 		<!--html code goes here -->
+
 		<div id="cont" class="container">
 		
 			<div id="titleBox" class="jumbotron">
 				<h1 id="title">Welcome to AllCollar</h1>
 			</div>
-			
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>			
 			<div id="infoBox" class="row">
 				<div class="col-xs-5 col-xs-offset-4 text-center">
 				  <h4>Sign in to an existing account</h4>

@@ -71,7 +71,9 @@ require('./config/passport')(passport); // pass passport for configuration
 // softjob.save(function (err) {if (err) console.log ('Error on save!')});
 
 // required for passport
-app.use(session({ secret: 'mySecretKey' })); // session secret
+app.use(session({ secret: 'mySecretKey',
+    resave: false,
+    saveUninitialized: false })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session

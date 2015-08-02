@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = new mongoose.Schema({
 	username: String,
@@ -44,12 +45,12 @@ userSchema.pre('save', function(next) {
 // custom method to add string to end of name
 // you can create more important methods like name validations or formatting
 // you can also do queries and find similar users 
-userSchema.methods.dudify = function() {
-  // add some stuff to the users name
-  this.name = this.name + '-dude'; 
-
-  return this.name;
-};	
+userSchema.methods.generateHash = function(password){
+	return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
+};
+userSchema.methods.isValidPassword = function(password){
+	return bcrypt.compareSync(password, this.passwordHash);
+};
 	
 	
 //Compiling Schema into a Model

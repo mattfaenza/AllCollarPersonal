@@ -77,8 +77,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
  // load our routes and pass in our app and fully configured passport
-//require('./app/routes.js')(app, passport);
-
+//require('./routes.js')(app, passport);
 
 var login = require('./routes/login');
 var register = require('./routes/register');
@@ -99,12 +98,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use('/', login);
-//app.use('/register', register);
-//app.use('/users', users);
-//app.use('/dashboard', dash);
-//app.use('/search', search);
-//app.use('/jobs', jobs);
+app.use('/', login);
+app.use('/login', login);
+app.use('/register', register);
+app.use('/users', users);
+app.use('/dashboard', dash);
+app.use('/search', search);
+app.use('/jobs', jobs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

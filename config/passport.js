@@ -19,10 +19,11 @@ module.exports = function(passport) {
     passport.use('local-signup', new LocalStrategy({
         // by default, local strategy uses username and password
         usernameField : 'username',
+		emailField : 'email',
         passwordField : 'password',
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
-    function(req, username, password, done) {
+    function(req, username, email, password, done) {
 
         // asynchronous
         // User.findOne wont fire unless data is sent back
@@ -39,8 +40,14 @@ module.exports = function(passport) {
             if (user) {
                 return done(null, false, req.flash('registerMessage', 'That username is already taken.'));
             } else {
-
-                // if there is no user with that username
+				// check to see if theres already a user with that email
+				User.findone({ 'local.email' :  email }, function(err, user) {
+				// if there are any errors, return the error
+					if (err)
+						return done(err);
+					if (user) {
+						return done(null, false, req.flash('registerMessage', 'That username is already taken.'));
+				// if there is no user with that username or email
                 // create the user
                 var newUser = new User();
 

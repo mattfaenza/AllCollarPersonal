@@ -72,8 +72,8 @@ require('./config/passport')(passport); // pass passport for configuration
 
 // required for passport
 app.use(session({ secret: 'mySecretKey',
-    resave: true,
-    saveUninitialized: true })); // session secret
+    resave: false,
+    saveUninitialized: false })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session

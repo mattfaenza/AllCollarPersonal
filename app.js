@@ -22,7 +22,7 @@ mongoose.connect('mongodb://groupuser:allCollar@ds053658.mongolab.com:53658/allc
 
 // The http server will listen to an appropriate port, or default to
 // port 5000.
-var theport = process.env.PORT || 80;
+var theport = process.env.PORT || 5000;
 var app = express();
 
 var db = mongoose.connection;

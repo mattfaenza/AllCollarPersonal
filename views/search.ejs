@@ -62,10 +62,14 @@
 				</div>
 			</div>
 			<div id="inContainer" class="container-fluid">
-			<form role="form">
-				<div class="form-group col-xs-10">
-					<input type="text" class="form-control" id="searchbar" placeholder="Narrow your search">
+			<form role="form" method="get" action="/search">
+				<div class="form-group col-xs-12">
 
+					<div id="searchWrapper">
+						<button id="submitButton" type="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-search"></span> Search</button>
+
+						<input id="searchbar" type="text" class="form-control"  name="term" placeholder="Narrow your search">
+					</div>
 					<table class="table table-striped" style="margin-bottom: 0px">
 						<tr>
 							<th style="width:10%">#</th>
@@ -93,8 +97,6 @@
 				</form>
 				
 			</div>
-			<button id="submitButton" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Search</button>
-
 		</div>
 		</div>
 

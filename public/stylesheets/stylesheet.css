@@ -79,3 +79,9 @@
 #details > p {
 	display: inline;
 }
+#searchWrapper #submitButton{
+	float:right;
+}
+#searchWrapper #searchbar{
+	width: 85%;
+}

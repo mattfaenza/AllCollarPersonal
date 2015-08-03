@@ -43,31 +43,49 @@
 					<input type="submit" onclick="upload()"></input>
 				</form> -->
 
-				<div id="jobInfo-inContainer" class="container-fluid well span6">
-					<form id="resume" enctype="multipart/form-data" action=<%= '/upload/' + jobInfo._id %> method="post">
-						<label for="pic">Attach Your Resume:</label>
-						<input type="file" name="resume"></input>
-						<button type="submit">Submit</button>
-					</form>
-					<div>
-						<% for (var i = 0; i < uploadedResumes.length; i++) { %>
-							<span style="margin-right: 5px"><%= uploadedResumes[i] %></span>
+				<div class="huge-container">
+					<% if ( jobInfo.employer == user.username ) { %>
+						<div id="applicants-inContainer" class="container-fluid well span6">
+							<div class="details">
+								<h4><b>Applicants</b></h4></br>
+								<% for ( var i = 0; i < allFiles.length; i++ ) { %>
+									<span><%= allFiles[i][0] %>:</span>
+									<% for ( var j = 0; j < allFiles[i][1].length; j++ ) { %>
+										<span><%= allFiles[i][1][j] %></span>
+									<% } %>
+									<br/>
+								<% } %>
+							</div>
+						</div>
+					<% } %>
+					<div id="jobInfo-inContainer" class="container-fluid well span6">
+						<% if ( jobInfo.employer != user.username ) { %>
+							<form id="resume" enctype="multipart/form-data" action=<%= '/upload/' + jobInfo._id %> method="post">
+								<label for="pic">Attach Your Resume:</label>
+								<input type="file" name="resume"></input>
+								<button type="submit">Submit</button>
+							</form>
+							<div>
+								<% for (var i = 0; i < uploadedResumes.length; i++) { %>
+									<span style="margin-right: 5px"><%= uploadedResumes[i] %></span>
+								<% } %>
+							</div>
 						<% } %>
-					</div>
-					<div id="details">
-						<h4><b>Job Details</b></h4></br>
-						Title:
-						<P id="name"><%= jobInfo.title %></p></br></br>
-						Description:
-						<P id="description"><%= jobInfo.fullDesc %></p></br></br>
-						Requirements:
-						<P id="requirements"><%= jobInfo.reqSkills %></p></br></br>
-						Compensation:
-						<P id="compensation"><%= jobInfo.compensation %></p></br></br>
-						Location:
-						<P id="location"><%= jobInfo.location %></p></br></br>
-						Length:
-						<P id="length"><%= jobInfo.length %></p>
+						<div class="details">
+							<h4><b>Job Details</b></h4></br>
+							Title:
+							<P id="name"><%= jobInfo.title %></p></br></br>
+							Description:
+							<P id="description"><%= jobInfo.fullDesc %></p></br></br>
+							Requirements:
+							<P id="requirements"><%= jobInfo.reqSkills %></p></br></br>
+							Compensation:
+							<P id="compensation"><%= jobInfo.compensation %></p></br></br>
+							Location:
+							<P id="location"><%= jobInfo.location %></p></br></br>
+							Length:
+							<P id="length"><%= jobInfo.length %></p>
+						</div>
 					</div>
 				</div>
 			</div>

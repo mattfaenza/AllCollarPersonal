@@ -76,7 +76,7 @@
 						<% for (var i = 0; i < jobs.length; i++) { %>
 							<% var job = jobs[i]; %>
 							<% if (job.isCompleted == false || job.isCompleted == null) { %>
-								<tr class="clickable-row" onclick=<%= "redirect('" + job._id + "')" %>>
+								<tr class="clickable-row" onclick=<%= "redirectJob('" + job._id + "')" %>>
 									<th style="width:10%"><%= count %></th>
 									<th style="width:50%"><%= job.title %></th>
 									<th><%= job.compensation %></th>
@@ -100,7 +100,7 @@
 						<% var count = 1 %>
 						<% for (var i = 0; i < user.jobApps.length; i++) { %>
 							<% var job = user.jobApps[i]; %>
-							<tr class="clickable-row" onclick=<%= "redirect('" + job._id + "')" %>>
+							<tr class="clickable-row" onclick=<%= "redirectJob('" + job._id + "')" %>>
 								<th style="width:10%"><%= count %></th>
 								<th style="width:50%"><%= job.title %></th>
 							<% if (job.isCompleted) { %>
@@ -114,6 +114,32 @@
 							<% } %>
 							</tr>
 							<% count += 1 %>
+						<% } %>
+					</table>
+				</div>
+
+				<table class="table table-striped" style="margin-bottom: 0px">
+					<tr>
+						<th style="width:10%">#</th>
+						<th style="width:50%">Posted Jobs</th>
+						<th>Applicants</th>
+					</tr>
+				</table>
+				<div class="tableContainer">
+					<table id="jobPost" class="table table-striped">
+						<% var count = 1 %>
+						<% for (var i = 0; i < postedJobs.length; i++) { %>
+							<% var job = postedJobs[i]; %>
+								<tr  class="clickable-row">
+									<th style="width:10%"><%= count %></th>
+									<th style="width:50%" class="job-item" onclick=<%= "redirectJob('" + job._id + "')" %>><%= job.title %></th>
+									<th>
+									<% for (var j = 0; j < job.applicants.length; j++) { %>
+										<span class="user-item" style="margin-right: 5px" class="clickable" onclick=<%= "redirectUser('" + job.applicants[j] + "')" %>><%= job.applicants[j] %></span>
+							   		<% } %> 
+							   		</th>
+								</tr>
+								<% count += 1 %>
 						<% } %>
 					</table>
 				</div>
@@ -132,8 +158,12 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 		<script>
-			function redirect(id) {
+			function redirectJob(id) {
 				window.document.location = "/dashboard/jobInfo/" + id;
+			}
+
+			function redirectUser(id) {
+				window.document.location = "/dashboard/profile/" + id;
 			}
 		</script>
 	</body>

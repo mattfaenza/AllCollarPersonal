@@ -46,8 +46,11 @@
 }
 #jobInfo-inContainer {
 	height: 300px;
-	width: 100%;
-	margin-left: 20px;
+	overflow-x: scroll;
+	overflow-y: scroll; 
+}
+#applicants-inContainer {
+	height: 200px;
 	overflow-x: scroll;
 	overflow-y: scroll; 
 }
@@ -76,6 +79,20 @@
 	margin-bottom: 10px;
 }
 
+.details > p {
+	display: inline;
+}
+
 #details > p {
 	display: inline;
+}
+
+.job-item:hover,
+.user-item:hover {
+	color: #2ecc71;
+}
+
+.huge-container {
+	width: 100%;
+    margin-left: 20px;
 }

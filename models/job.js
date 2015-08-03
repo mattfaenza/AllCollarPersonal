@@ -57,21 +57,33 @@ var getJobData = function (res, req) {
 	}
 
 	Job.find(function(err, jobs) {
-		res.render('dashboard.ejs', {
-            "jobs" : jobs,
-            "user" : req.user
-        });
+		Job.find({'employer' : req.user.username}, function (err, postedJobs) {
+			res.render('dashboard.ejs', {
+	            "jobs" : jobs,
+	            "user" : req.user,
+	            "postedJobs" : postedJobs
+	        });
+		});
 	})
 };
 
 // Gets the information about the request job and renders the ejs
 var getJobInfo = function (res, req) {
 	var files = [];
+	var allFiles = [];
 	try {
 		files = fs.readdirSync('upload/' + req.params.id + '/' + req.user.username);
 	} catch ( e ) {
 		// It is okay if it errors here, since no folders exist
 	}
+
+	try {
+		allFiles = fs.readdirSync('upload/' + req.params.id);
+		for ( var i = 0; i < allFiles.length; i++ ) {
+			var filesInside = fs.readdirSync('upload/' + req.params.id + '/' + allFiles[i]);
+			allFiles[i] = [ allFiles[i], filesInside ];
+		}
+	} catch ( e ) {}
 
 	var Job;
 	if (mongoose.models.jobs) {
@@ -80,10 +92,14 @@ var getJobInfo = function (res, req) {
 		Job = mongoose.model('jobs', jobSchema);
 	}
 
+	console.log(allFiles);
+
 	Job.findOne({"_id":req.params.id},function(err, job) {
 		res.render('jobInfo.ejs', {
 			"jobInfo" : job,
-			"uploadedResumes" : files 
+			"uploadedResumes" : files,
+			"allFiles" : allFiles,
+			"user" : req.user
 		});
 	});
 }

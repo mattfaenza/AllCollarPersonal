@@ -17,18 +17,18 @@ router.post('/', passport.authenticate('local-login', {
     failureFlash : true // allow flash messages
 }));
 
- // FACEBOOK ROUTES =====================
+    // FACEBOOK ROUTES =====================
 
- // route for facebook authentication and login
- router.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+    // route for facebook authentication and login
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope : [ 'email' ] }));
 
     // handle the callback after facebook has authenticated the user
-router.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect to dash.
-    res.redirect('/dashboard');
-  });
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', { scope : [ 'email' ] }, {
+            successRedirect : '/profile',
+            failureRedirect : '/'
+        }));
+
 
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {

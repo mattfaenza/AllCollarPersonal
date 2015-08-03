@@ -4,6 +4,7 @@ var router = express.Router();
 var path = require('path');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
+var util = require('util');
 var methodOverride = require('method-override');
 
 router.get('/', function(req, res) {

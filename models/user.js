@@ -24,7 +24,9 @@ var userSchema = new mongoose.Schema({
 	//Rating as an employee - avergaed
 	hunterRating: { type: Number, max: 0, min: 5 },
 	//Rating as an employer - averaged
-	employerRating: { type: Number, max: 0, min: 5 }
+	employerRating: { type: Number, max: 0, min: 5 },
+	//list of jobs post by user
+	jobPost: Array
 	});
 
 // on every save, add the date

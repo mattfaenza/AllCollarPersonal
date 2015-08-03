@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--our own css-->
+		<link rel="stylesheet" type="text/css" href="../public/stylesheets/stylesheet.css">
+		
+		<!--bootstrap cdn-->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	</head>
+
+	<body>
+		<!--html code goes here -->
+		<div id="cont" class="container">
+		
+			<div id="titleBox" class="jumbotron">
+				<h1 id="title">Applicant Information</h1>
+			</div>
+			
+			
+		<div id="navbar">
+			<ul id="nav-link" class="nav nav-pills">
+			  <li><a href="\dashboard">Dashboard</a></li>
+			  <li><a href="\profile">Profile Settings</a></li>
+		   	  <li><a href="\search">Search for a Job</a></li>
+			  <li><a href="#">Admin Access</a></li>
+			  <li><a href="\login">Logout</a></li>			  
+			</ul><br>
+		</div>
+
+		<div id="outContainer">
+			<div id="profileInfo" class="container-fluid well span6">
+				<div class="row-fluid">
+						<ul class="nav">
+							<li>
+								First, last name: 
+								<p id="name" class="info"></p>
+							</li>
+							<li>
+								Email:
+								<p id="email" class="info"></p>
+							</li>
+							<li>
+								Locale:
+								<p id="locale" class="info"></p>
+							</li>
+							<li>
+								Rating:
+								<p id="rating" class="info"></p>
+							</li>
+							<li>
+								Recent job:
+								<p id="recentJob" class="info"></p>
+							</li>
+						</ul>
+					</div>
+			</div>
+
+			<div id="inContainer" class="container-fluid">
+				<div class="col-xs-12">
+				  <form role="form">
+					
+					<a href="link to the resume goes here" class="btn btn-info" role="button" download>
+					  Click to download the applicant resume
+					</a></br></br>					
+					
+					<div class="panel panel-info">
+					  <div class="panel-heading">Full Name (First, Last)</div>
+					  <div class="panel-body"></div>
+					</div>
+					
+					<div class="panel panel-info">
+					  <div class="panel-heading">Email</div>
+					  <div class="panel-body"></div>
+					</div>
+					
+					<div class="panel panel-info">
+					  <div class="panel-heading">Phone Number</div>
+					  <div class="panel-body"></div>
+					</div>
+					
+					<div class="panel panel-info">
+					  <div class="panel-heading">Address</div>
+					  <div class="panel-body"></div>
+					</div>
+					
+					<div class="panel panel-info">
+					  <div class="panel-heading">Phone Number</div>
+					  <div class="panel-body"></div>
+					</div>
+					
+					<table id="applicationStatus" class="table table-striped">
+						<tr>
+							<th>Recent Jobs</th>
+							<th>Rating</th>
+						</tr>
+					</table>
+					
+					<table id="applicationStatus" class="table table-striped">
+						<tr>
+							<th>User/Company</th>
+							<th>Comments</th>
+						</tr>
+					</table>				
+						
+					<div class="form-group">
+					  <label for="skills">Leave a comment:</label>
+					  
+					  <div class="form-group">
+						<input type="text" class="form-control" id="company" placeholder="Enter username or company affiliation">
+					  </div>
+					  
+					  <textarea type="text" class="form-control" rows="2" id="skills" placeholder="Your comment goes here."></textarea>
+					</div>
+					
+					<button id="submitButton" type="submit" class="btn btn-primary">Submit Comment</button>
+				  </form>
+				</div>
+			</div>
+
+		</div>
+
+
+			 
+		</div>
+		
+		<!--jquery cdn-->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+	</body>
+</html>

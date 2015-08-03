@@ -95,6 +95,7 @@ var users = require('./routes/users');
 var dash = require('./routes/dashboard');
 var search = require('./routes/search');
 var jobs = require('./routes/jobs');
+var applicant = require('./routes/applicant');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -115,6 +116,7 @@ app.use('/users', users);
 app.use('/dashboard', dash);
 app.use('/search', search);
 app.use('/jobs', jobs);
+app.use('/applicant', applicant);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

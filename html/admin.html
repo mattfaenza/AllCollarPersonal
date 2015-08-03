@@ -22,10 +22,10 @@
 			
 		<div id="navbar">
 			<ul id="nav-link" class="nav nav-pills">
-			  <li class="active"><a href="#">Dashboard</a></li>
+			  <li><a href="#">Dashboard</a></li>
 			  <li><a href="/profile">Profile Settings</a></li>
 		   	  <li><a href="/search">Search for a Job</a></li>
-			  <li><a href="#">Admin Access</a></li>
+			  <li class="active"><a href="#">Admin Access</a></li>
 			  <li><a href="/login">Logout</a></li>			  
 			</ul><br>
 		</div>
@@ -59,30 +59,15 @@
 			</div>
 
 			<div id="inContainer" class="container-fluid">
-				<table class="table table-striped" style="margin-bottom: 0px">
+				<label for="adminDelete">Delete users or jobs by clicking them</label>
+				<table name="adminDelete" class="table table-striped">
 					<tr>
-						<th style="width:10%">#</th>
-						<th style="width:50%">New Jobs</th>
-						<th>Compensation</th>
+						<th>Listed jobs</th>
+					</tr>
+					<tr>
+						<th>Users</th>
 					</tr>
 				</table></br>
-				
-		
-				<table id="jobStatus" class="table table-striped">
-					<tr>
-						<th>#</th>
-						<th>Jobs You Listed</th>
-						<th>Applicant</th>
-					</tr>
-				</table></br>
-
-				<table id="applicationStatus" class="table table-striped">
-					<tr>
-						<th>#</th>
-						<th>Jobs Applied To</th>
-						<th>Status</th>
-					</tr>
-				</table>
 			</div>
 
 		</div>

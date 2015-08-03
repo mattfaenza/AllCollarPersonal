@@ -12,9 +12,6 @@ var flash = require('connect-flash');
 var User = require('./models/user');
 var Job = require('./models/job');
 
-var FacebookStrategy = require('passport-facebook').Strategy;
-var config = require('./config/fbconfig');
-
 //Serving a web page
 var http = require('http');
 
@@ -80,19 +77,6 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-passport.use(new FacebookStrategy({
-    clientID: config.facebook_api_key,
-    clientSecret: config.facebook_api_secret,
-    callbackURL: config.callback_url
-  },
-  function(accessToken, refreshToken, profile, done) {
-    User.findOrCreate(..., function(err, user) {
-      if (err) { return done(err); }
-      done(null, user);
-    });
-  }
-));
-
  // load our routes and pass in our app and fully configured passport
 //require('./routes.js')(app, passport);
 var login = require('./routes/login');
@@ -121,19 +105,6 @@ app.use('/users', users);
 app.use('/dashboard', dash);
 app.use('/search', search);
 app.use('/jobs', jobs);
-
-// Redirect the user to Facebook for authentication.  When complete,
-// Facebook will redirect the user back to the application at
-//     /auth/facebook/callback
-app.get('/auth/facebook', passport.authenticate('facebook'));
-
-// Facebook will redirect the user to this URL after approval.  Finish the
-// authentication process by attempting to obtain an access token.  If
-// access was granted, the user will be logged in.  Otherwise,
-// authentication has failed.
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect: '/',
-                                      failureRedirect: '/login' }));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

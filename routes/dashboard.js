@@ -27,6 +27,11 @@ router.get('/logout', function(req, res){
 	var dir = path.resolve('./html/login.html');
 	res.sendFile(dir);
 });
+
+router.get('/applicant', function(req, res){
+	var dir = path.resolve('./html/applicant.html');
+	res.sendFile(dir);
+});
 // var asd = document.getElementById("submitButton");
 // console.log(asd);
 

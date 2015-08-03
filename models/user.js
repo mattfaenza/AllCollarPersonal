@@ -2,11 +2,19 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = new mongoose.Schema({
-	username: String,
+	username: {
+		type: String,
+		unique: true,
+		required: 'Username is required',
+		trim: true
+	},
 	//Since we don't want to store passwords explicitly
 	passwordHash: String,
 	passwordSalt: String,
-	email: String,
+	email: {
+		type: String,
+		match: [/.+\@.+\..+/, "Please fill a valid e-mail address"]
+	},
 	name: {
     first: String,
     last: { type: String, trim: true }

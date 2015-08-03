@@ -16,14 +16,14 @@
 		<div id="cont" class="container">
 		
 			<div id="titleBox" class="jumbotron">
-				<h1 id="title">Searching for a Job</h1>
+				<h1 id="title">Profile Settings</h1>
 			</div>
 			
 			
 		<div id="navbar">
 			<ul id="nav-link" class="nav nav-pills">
 			  <li><a href="/dashboard">Dashboard</a></li>
-			  <li class="active"><a href="#">Profile Settings</a></li>
+			  <li class="active"><a href="#">Profile</a></li>
 		   	  <li><a href="/search">Search for a Job</a></li>
 			  <li><a href="#">Admin Access</a></li>
 			  <li><a href="/login">Logout</a></li>			  
@@ -36,11 +36,11 @@
 						<ul class="nav">
 							<li>
 								First, last name: 
-								<p id="name" class="info"></p>
+								<p id="name" class="info"><%= user.first %>, <%= user.last %></p>
 							</li>
 							<li>
 								Email:
-								<p id="email" class="info"></p>
+								<p id="email" class="info"><%= user.email %></p>
 							</li>
 							<li>
 								Locale:

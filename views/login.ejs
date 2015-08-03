@@ -89,7 +89,7 @@
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+        'Thanks for logging in, ' + response.name + '! Please proceed to login to AllCollar.';
     });
   }
 </script>
@@ -121,9 +121,8 @@
 
 				<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 				</fb:login-button>
-
-				 <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
-
+				
+				<a href="/auth/facebook"><img src="login-with-facebook.png" width="154" height="22"></a>
 				
 				<div id="status">
 				</div>

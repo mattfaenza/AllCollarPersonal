@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var fs = require('fs');
 
 var jobSchema = new mongoose.Schema({
 	id: String,
@@ -65,6 +66,12 @@ var getJobData = function (res, req) {
 
 // Gets the information about the request job and renders the ejs
 var getJobInfo = function (res, req) {
+	var files = [];
+	try {
+		files = fs.readdirSync('upload/' + req.params.id + '/' + req.user.username);
+	} catch ( e ) {
+		// It is okay if it errors here, since no folders exist
+	}
 
 	var Job;
 	if (mongoose.models.jobs) {
@@ -75,7 +82,8 @@ var getJobInfo = function (res, req) {
 
 	Job.findOne({"_id":req.params.id},function(err, job) {
 		res.render('jobInfo.ejs', {
-			"jobInfo" : job
+			"jobInfo" : job,
+			"uploadedResumes" : files 
 		});
 	});
 }

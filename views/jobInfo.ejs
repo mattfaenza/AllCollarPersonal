@@ -44,11 +44,16 @@
 				</form> -->
 
 				<div id="jobInfo-inContainer" class="container-fluid well span6">
-					<form id="resume" action="demo_form.asp">
+					<form id="resume" enctype="multipart/form-data" action=<%= '/upload/' + jobInfo._id %> method="post">
 						<label for="pic">Attach Your Resume:</label>
-						<input type="file" name="pic" accept=""></input>
+						<input type="file" name="resume"></input>
 						<button type="submit">Submit</button>
-					</form></br>
+					</form>
+					<div>
+						<% for (var i = 0; i < uploadedResumes.length; i++) { %>
+							<span style="margin-right: 5px"><%= uploadedResumes[i] %></span>
+						<% } %>
+					</div>
 					<div id="details">
 						<h4><b>Job Details</b></h4></br>
 						Title:

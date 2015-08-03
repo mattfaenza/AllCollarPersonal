@@ -1,0 +1,81 @@
+#titleBox{
+	background-color: LightSteelBlue;
+	border-radius: 25px;
+    border: 3px solid #778899;
+}
+
+#title{
+	text-align: center;
+}
+
+.form-group{
+	text-align: left;
+}
+
+#nav-link > li+li{
+	margin-left: 90px;
+}
+
+#outContainer{
+	display: flex;
+}
+
+#profileInfo{
+	width: 300px;
+	height: 200px;
+}
+
+#inContainer{
+	float: right;
+	width: 100%;
+}
+
+.clickable-row {
+	cursor: pointer;
+	background: #fff !important;
+}
+
+.clickable-row:hover {
+	background: rgba(52, 152, 219,0.1) !important;
+}
+
+.tableContainer {
+	max-height: 300px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+#jobInfo-inContainer {
+	height: 300px;
+	width: 100%;
+	margin-left: 20px;
+	overflow-x: scroll;
+	overflow-y: scroll; 
+}
+
+#inContainer > table {
+	margin-bottom: 0px !important;
+}
+
+#jobInfo-contactInfo {
+	width: 300px;
+	height: 220px;
+	overflow-x: scroll;
+	overflow-y: scroll;
+}
+
+#contactInfo {
+	width: 200px;
+	height: 200px;
+}
+
+#resume > input {
+	display: inline;
+}
+
+#resume {
+	margin-bottom: 10px;
+}
+
+#details > p {
+	display: inline;
+}

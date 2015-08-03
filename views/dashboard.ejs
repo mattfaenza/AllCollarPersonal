@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--our own css-->
+		<link rel="stylesheet" type="text/css" href="./stylesheets/stylesheet.css">
+		
+		<!--bootstrap cdn-->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	</head>
+
+	<body>
+		<!--html code goes here -->
+		<div id="cont" class="container">
+		
+			<div id="titleBox" class="jumbotron">
+				<h1 id="title">Dashboard for AllCollar</h1>
+			</div>
+			
+			
+		<div id="navbar">
+			<ul id="nav-link" class="nav nav-pills">
+			  <li class="active"><a href="#">Dashboard</a></li>
+			  <li><a href="/profile">Profile Settings</a></li>
+		   	  <li><a href="/search">Search for a Job</a></li>
+			  <li><a href="#">Admin Access</a></li>
+			  <li><a href="/logout">Logout</a></li>			  
+			</ul><br>
+		</div>
+
+		<div id="outContainer">
+			<div id="profileInfo" class="container-fluid well span6">
+				<div class="row-fluid">
+						<ul class="nav">
+							<li>
+								<!-- First, last name: --> 
+								<p id="name" class="info"><%= "Name: " + user.name.first + "," + user.name.last %></p>
+							</li>
+							<li>
+								<!-- Email: -->
+								<p id="email" class="info"><%= "Email: " + user.email %></p>
+							</li>
+							<li>
+								<!-- Locale: -->
+								<p id="locale" class="info"><%= "Locale: " + user.locale %></p>
+							</li>
+							<li>
+								<!-- Hunter Rating: -->
+								<p id="hunterRating" class="info"><%= "Hunter Rating: " + user.hunterRating %></p>
+							</li>
+							<li>
+								<!-- Employer Rating: -->
+								<p id="employerRating" class="info"><%= "Employer Rating: " + user.employerRating %></p>
+							</li>
+							<li>
+								<!-- Recent job: -->
+								<p id="recentJob" class="info"><%= "Recent Job: " + user.jobHistory %></p></br>
+							</li>
+						</ul>
+				</div>
+			</div>
+
+			<div id="inContainer" class="container-fluid">
+				<table class="table table-striped" style="margin-bottom: 0px">
+					<tr>
+						<th style="width:10%">#</th>
+						<th style="width:50%">New Jobs</th>
+						<th>Compensation</th>
+					</tr>
+				</table>
+				<div class="tableContainer">
+					<table id="newJobs" class="table table-striped">
+						<% var count = 1 %>
+						<% for (var i = 0; i < jobs.length; i++) { %>
+							<% var job = jobs[i]; %>
+							<% if (job.isCompleted == false || job.isCompleted == null) { %>
+								<tr class="clickable-row" onclick=<%= "redirect('" + job._id + "')" %>>
+									<th style="width:10%"><%= count %></th>
+									<th style="width:50%"><%= job.title %></th>
+									<th><%= job.compensation %></th>
+								</tr>
+								<% count += 1 %>
+							<% } %>
+						<% } %>
+					</table>
+				</div>
+		
+				
+				<table class="table table-striped" style="margin-bottom: 0px">
+					<tr>
+						<th style="width:10%">#</th>
+						<th style="width:50%">Jobs Applied</th>
+						<th>Statuses</th>
+					</tr>
+				</table>
+				<div class="tableContainer">
+					<table id="applicationStatus" class="table table-striped">
+						<% var count = 1 %>
+						<% for (var i = 0; i < user.jobApps.length; i++) { %>
+							<% var job = user.jobApps[i]; %>
+							<tr class="clickable-row" onclick=<%= "redirect('" + job._id + "')" %>>
+								<th style="width:10%"><%= count %></th>
+								<th style="width:50%"><%= job.title %></th>
+							<% if (job.isCompleted) { %>
+								<% if (job.userHired == user.username) { %>
+									<th>Hired</th>
+								<% } else {%>
+									<th>Rejected</th>
+								<% } %>
+							<% } else { %>
+								<th>Pending</th>
+							<% } %>
+							</tr>
+							<% count += 1 %>
+						<% } %>
+					</table>
+				</div>
+			</div>
+
+		</div>
+
+
+			 
+		</div>
+		
+		<!--jquery cdn-->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<script>
+			function redirect(id) {
+				window.document.location = "/dashboard/jobInfo/" + id;
+			}
+		</script>
+	</body>
+</html>

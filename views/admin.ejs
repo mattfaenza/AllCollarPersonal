@@ -16,16 +16,16 @@
 		<div id="cont" class="container">
 		
 			<div id="titleBox" class="jumbotron">
-				<h1 id="title">Searching for a Job</h1>
+				<h1 id="title">Dashboard for AllCollar</h1>
 			</div>
 			
 			
 		<div id="navbar">
 			<ul id="nav-link" class="nav nav-pills">
-			  <li><a href="/dashboard">Dashboard</a></li>
+			  <li><a href="/dasboard">Dashboard</a></li>
 			  <li><a href="/profile">Profile Settings</a></li>
-		   	  <li class="active"><a href="/search">Search for a Job</a></li>
-			  <li><a href="/admin">Admin Access</a></li>
+		   	  <li><a href="/search">Search for a Job</a></li>
+			  <li class="active"><a href="#">Admin Access</a></li>
 			  <li><a href="/login">Logout</a></li>			  
 			</ul><br>
 		</div>
@@ -59,21 +59,15 @@
 			</div>
 
 			<div id="inContainer" class="container-fluid">
-				<form role="form">
-					<div class="form-group col-xs-10">
-					  <input type="text" class="form-control" id="searchbar" placeholder="Narrow your search">
-					</div>
-				</form>
-				<button id="submitButton" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Search</button>
-				<table id="newJobs" class="table table-striped">
-					<div>
-						<tr>
-							<th>Job</th>
-							<th>Wage</th>
-							<th>Description</th>
-						</tr>
-					</div>
-				</table>
+				<label for="adminDelete">Delete users or jobs by clicking them</label>
+				<table name="adminDelete" class="table table-striped">
+					<tr>
+						<th>Listed jobs</th>
+					</tr>
+					<tr>
+						<th>Users</th>
+					</tr>
+				</table></br>
 			</div>
 
 		</div>
@@ -86,6 +80,42 @@
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<script>
+			$(document).ready(function(){
+				$.get('http://localhost:5000/dashboard/jobs', function(data) {
+					var count = 1;
+					var newJobs = $('#newJobs');
+					for (var i = 0; i < data.length; i++) {
+
+						if (data[i].isCompleted == false) {
+							var newEntry = $('<tr class="clickable-row"><th style="width:10%"></th><th style="width:50%"></th><th></th></tr>'),
+								headers = newEntry.children(),
+								th_one = headers.eq(0),
+								th_two = headers.eq(1),
+								th_three = headers.eq(2);
+
+							
+							th_one.text(count);
+							th_two.text(data[i].title);
+							th_three.text(data[i].compensation);
+							newEntry.data('id', data[i]['_id']);
+							newJobs.append(newEntry);
+							count += 1;
+						}
+
+					}
+
+					$(".clickable-row").click(function() {
+						window.document.location = "/dashboard/jobInfo/" + $(this).data('id');
+					});
+				});
+
+
+
+				
+			});
+		</script>
 	</body>
 </html>

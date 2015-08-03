@@ -98,6 +98,7 @@ var jobs = require('./routes/jobs');
 var applicant = require('./routes/applicant');
 var logout = require('./routes/logout');
 var upload = require('./routes/upload');
+var admin = require('./routes/admin');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -121,6 +122,7 @@ app.use('/jobs', jobs);
 app.use('/applicant', applicant);
 app.use('/logout', logout);
 app.use('/upload', upload);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

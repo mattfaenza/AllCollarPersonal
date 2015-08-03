@@ -113,7 +113,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', login);
 app.use('/login', login);
 app.use('/register', register);
-app.use('/users', users);
+app.use('/profile', users);
 app.use('/dashboard', dash);
 app.use('/search', search);
 app.use('/jobs', jobs);

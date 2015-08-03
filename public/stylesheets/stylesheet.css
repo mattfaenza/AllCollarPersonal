@@ -96,3 +96,9 @@
 	width: 100%;
     margin-left: 20px;
 }
+#searchWrapper #submitButton{
+	float:right;
+}
+#searchWrapper #searchbar{
+	width: 85%;
+}

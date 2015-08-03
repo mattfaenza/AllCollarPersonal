@@ -48,11 +48,19 @@
 							</li>
 							<li>
 								<!-- Hunter Rating: -->
-								<p id="hunterRating" class="info"><%= "Hunter Rating: " + user.hunterRating %></p>
+								<% if (user.hunterRating == undefined) {%>
+									<p id="hunterRating" class="info"><%= "Hunter Rating: N/A"%></p>
+								<% } else {%>
+									<p id="hunterRating" class="info"><%= "Hunter Rating: " + user.hunterRating%></p>
+								<% } %>
 							</li>
 							<li>
 								<!-- Employer Rating: -->
-								<p id="employerRating" class="info"><%= "Employer Rating: " + user.employerRating %></p>
+								<% if (user.employerRating == undefined) {%>
+									<p id="employerRating" class="info"><%= "Employer Rating: N/A"%></p>
+								<% } else {%>
+									<p id="employerRating" class="info"><%= "Employer Rating: " + user.employerRating%></p>
+								<% } %>
 							</li>
 							<li>
 								<!-- Recent job: -->

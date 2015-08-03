@@ -60,6 +60,12 @@ module.exports = function(passport) {
                             console.log(newUser.email);
                             newUser.passwordHash = newUser.generateHash(password);
                             console.log(newUser.passwordHash);
+
+                            newUser.name.first = req.body.first;
+                            newUser.name.last = req.body.last;
+                            newUser.locale = req.body.locale;
+                            
+
                             // save the user
                             newUser.save(function(err) {
                                 if (err)
@@ -82,6 +88,7 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, username, password, done) { // callback with username and password from our form
+
         // check if user already exists (it should)
         User.findOne({ 'username' :  username }, function(err, user) {
             // if there are any errors, return the error before anything else

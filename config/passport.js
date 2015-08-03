@@ -60,6 +60,12 @@ module.exports = function(passport) {
                             console.log(newUser.email);
                             newUser.passwordHash = newUser.generateHash(password);
                             console.log(newUser.passwordHash);
+
+                            newUser.name.first = req.body.first;
+                            newUser.name.last = req.body.last;
+                            newUser.locale = req.body.locale;
+                            
+
                             // save the user
                             newUser.save(function(err) {
                                 if (err)

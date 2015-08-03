@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 
 // process the login form
 router.post('/', passport.authenticate('local-login', {
-    successRedirect : '/user', // redirect to the secure dashboard section
+    successRedirect : '/users', // redirect to the secure dashboard section
     failureRedirect : '/', // redirect back to the login page if there is an error
     failureFlash : true // allow flash messages
 }));

@@ -7,6 +7,9 @@ var mongoose = require('mongoose');
 var dashboard = require('../models/dashboard'),
 	job = require('../models/job');
 
+var isAuthenticated = require('../config/authentication');
+
+router.use(isAuthenticated);
 
 /* GET home page. */
 router.get('/', isAuthenticated, function(req, res){
@@ -14,7 +17,7 @@ router.get('/', isAuthenticated, function(req, res){
 });
 
 router.get('/profile', isAuthenticated, function(req, res){
-	res.render('profile.ejs');
+	res.redirect('/users');
 });
 
 router.get('/search', isAuthenticated, function(req, res){

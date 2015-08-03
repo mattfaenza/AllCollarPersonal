@@ -96,3 +96,4 @@ var Job = mongoose.model('Job', jobSchema);
 module.exports = Job;
 module.exports.getJobData = getJobData;
 module.exports.getJobInfo = getJobInfo;
+

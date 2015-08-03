@@ -39,14 +39,29 @@
 	background: rgba(52, 152, 219,0.1) !important;
 }
 
-#newJobsContainer {
+.tableContainer {
 	max-height: 300px;
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
 
+#jobInfo-inContainer {
+	height: 300px;
+	width: 100%;
+	margin-left: 20px;
+	overflow-x: scroll;
+	overflow-y: scroll; 
+}
+
 #inContainer > table {
 	margin-bottom: 0px !important;
+}
+
+#jobInfo-contactInfo {
+	width: 300px;
+	height: 220px;
+	overflow-x: scroll;
+	overflow-y: scroll;
 }
 
 #contactInfo {
@@ -64,4 +79,10 @@
 
 #details > p {
 	display: inline;
+}
+#searchWrapper #submitButton{
+	float:right;
+}
+#searchWrapper #searchbar{
+	width: 85%;
 }

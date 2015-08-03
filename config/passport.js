@@ -82,7 +82,7 @@ module.exports = function(passport) {
         passReqToCallback : true // allows us to pass back the entire request to the callback
     },
     function(req, username, password, done) { // callback with username and password from our form
-        console.log("do you even");
+
         // check if user already exists (it should)
         User.findOne({ 'username' :  username }, function(err, user) {
             // if there are any errors, return the error before anything else

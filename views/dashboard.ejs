@@ -26,7 +26,7 @@
 			  <li><a href="/profile">Profile Settings</a></li>
 		   	  <li><a href="/search">Search for a Job</a></li>
 			  <li><a href="#">Admin Access</a></li>
-			  <li><a href="/login">Logout</a></li>			  
+			  <li><a href="/logout">Logout</a></li>			  
 			</ul><br>
 		</div>
 
@@ -35,27 +35,31 @@
 				<div class="row-fluid">
 						<ul class="nav">
 							<li>
-								First, last name: 
-								<p id="name" class="info"></p>
+								<!-- First, last name: --> 
+								<p id="name" class="info"><%= "Name: " + user.name.first + "," + user.name.last %></p>
 							</li>
 							<li>
-								Email:
-								<p id="email" class="info"></p>
+								<!-- Email: -->
+								<p id="email" class="info"><%= "Email: " + user.email %></p>
 							</li>
 							<li>
-								Locale:
-								<p id="locale" class="info"></p>
+								<!-- Locale: -->
+								<p id="locale" class="info"><%= "Locale: " + user.locale %></p>
 							</li>
 							<li>
-								Rating:
-								<p id="rating" class="info"></p>
+								<!-- Hunter Rating: -->
+								<p id="hunterRating" class="info"><%= "Hunter Rating: " + user.hunterRating %></p>
 							</li>
 							<li>
-								Recent job:
-								<p id="recentJob" class="info"></p>
+								<!-- Employer Rating: -->
+								<p id="employerRating" class="info"><%= "Employer Rating: " + user.employerRating %></p>
+							</li>
+							<li>
+								<!-- Recent job: -->
+								<p id="recentJob" class="info"><%= "Recent Job: " + user.jobHistory %></p></br>
 							</li>
 						</ul>
-					</div>
+				</div>
 			</div>
 
 			<div id="inContainer" class="container-fluid">
@@ -81,8 +85,54 @@
 						<th>#</th>
 						<th>Jobs Applied To</th>
 						<th>Status</th>
+				</table>
+				<div class="tableContainer">
+					<table id="newJobs" class="table table-striped">
+						<% var count = 1 %>
+						<% for (var i = 0; i < jobs.length; i++) { %>
+							<% var job = jobs[i]; %>
+							<% if (job.isCompleted == false || job.isCompleted == null) { %>
+								<tr class="clickable-row" onclick=<%= "redirect('" + job._id + "')" %>>
+									<th style="width:10%"><%= count %></th>
+									<th style="width:50%"><%= job.title %></th>
+									<th><%= job.compensation %></th>
+								</tr>
+								<% count += 1 %>
+							<% } %>
+						<% } %>
+					</table>
+				</div>
+		
+				
+				<table class="table table-striped" style="margin-bottom: 0px">
+					<tr>
+						<th style="width:10%">#</th>
+						<th style="width:50%">Jobs Applied</th>
+						<th>Statuses</th>
 					</tr>
 				</table>
+				<div class="tableContainer">
+					<table id="applicationStatus" class="table table-striped">
+						<% var count = 1 %>
+						<% for (var i = 0; i < user.jobApps.length; i++) { %>
+							<% var job = user.jobApps[i]; %>
+							<tr class="clickable-row" onclick=<%= "redirect('" + job._id + "')" %>>
+								<th style="width:10%"><%= count %></th>
+								<th style="width:50%"><%= job.title %></th>
+							<% if (job.isCompleted) { %>
+								<% if (job.userHired == user.username) { %>
+									<th>Hired</th>
+								<% } else {%>
+									<th>Rejected</th>
+								<% } %>
+							<% } else { %>
+								<th>Pending</th>
+							<% } %>
+							</tr>
+							<% count += 1 %>
+						<% } %>
+					</table>
+				</div>
 			</div>
 
 		</div>
@@ -98,6 +148,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 		<script>
+// <<<<<<< HEAD
 			$(document).ready(function(){
 				$.get('http://localhost:5000/dashboard/jobs', function(data) {
 					var count = 1;
@@ -131,6 +182,11 @@
 
 				
 			});
+// =======
+// 			function redirect(id) {
+// 				window.document.location = "/dashboard/jobInfo/" + id;
+// 			}
+// >>>>>>> alda-branch
 		</script>
 	</body>
 </html>

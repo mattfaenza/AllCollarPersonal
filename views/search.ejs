@@ -1,91 +1,115 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<!--our own css-->
-		<link rel="stylesheet" type="text/css" href="../public/stylesheets/stylesheet.css">
-		
-		<!--bootstrap cdn-->
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-	</head>
+<head>
+	<!--our own css-->
+	<link rel="stylesheet" type="text/css" href="./stylesheets/stylesheet.css">
 
-	<body>
-		<!--html code goes here -->
-		<div id="cont" class="container">
+	<!--bootstrap cdn-->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+
+<body>
+	<!--html code goes here -->
+	<div id="cont" class="container">
 		
-			<div id="titleBox" class="jumbotron">
-				<h1 id="title">Searching for a Job</h1>
-			</div>
-			
-			
+		<div id="titleBox" class="jumbotron">
+			<h1 id="title">Searching for a Job</h1>
+		</div>
+
+
 		<div id="navbar">
 			<ul id="nav-link" class="nav nav-pills">
-			  <li><a href="/dashboard">Dashboard</a></li>
-			  <li><a href="/profile">Profile Settings</a></li>
-		   	  <li class="active"><a href="#">Search for a Job</a></li>
-			  <li><a href="#">Admin Access</a></li>
-			  <li><a href="/login">Logout</a></li>			  
+				<li><a href="#">Dashboard</a></li>
+				<li><a href="#">Profile Settings</a></li>
+				<li class="active"><a href="#">Search for a Job</a></li>
+				<li><a href="#">Admin Access</a></li>
+				<li><a href="#">Logout</a></li>			  
 			</ul><br>
 		</div>
 
 		<div id="outContainer">
 			<div id="profileInfo" class="container-fluid well span6">
 				<div class="row-fluid">
-						<ul class="nav">
-							<li>
-								First, last name: 
-								<p id="name" class="info"></p>
-							</li>
-							<li>
-								Email:
-								<p id="email" class="info"></p>
-							</li>
-							<li>
-								Locale:
-								<p id="locale" class="info"></p>
-							</li>
-							<li>
-								Rating:
-								<p id="rating" class="info"></p>
-							</li>
-							<li>
-								Recent job:
-								<p id="recentJob" class="info"></p>
-							</li>
-						</ul>
-					</div>
+					<ul class="nav">
+						<li>
+							<!-- First, last name: --> 
+							<p id="name" class="info"><%= "Name: " + user.name.first + "," + user.name.last %></p>
+						</li>
+						<li>
+							<!-- Email: -->
+							<p id="email" class="info"><%= "Email: " + user.email %></p>
+						</li>
+						<li>
+							<!-- Locale: -->
+							<p id="locale" class="info"><%= "Locale: " + user.locale %></p>
+						</li>
+						<li>
+							<!-- Hunter Rating: -->
+							<p id="hunterRating" class="info"><%= "Hunter Rating: " + user.hunterRating %></p>
+						</li>
+						<li>
+							<!-- Employer Rating: -->
+							<p id="employerRating" class="info"><%= "Employer Rating: " + user.employerRating %></p>
+						</li>
+						<li>
+							<!-- Recent job: -->
+							<p id="recentJob" class="info"><%= "Recent Job: " + user.jobHistory %></p></br>
+						</li>
+					</ul>
+				</div>
 			</div>
-
 			<div id="inContainer" class="container-fluid">
-				<form role="form">
-					<div class="form-group col-xs-10">
-					  <input type="text" class="form-control" id="searchbar" placeholder="Narrow your search">
+			<form role="form" method="get" action="/search">
+				<div class="form-group col-xs-12">
+
+					<div id="searchWrapper">
+						<button id="submitButton" type="submit" class="btn btn-primary" ><span class="glyphicon glyphicon-search"></span> Search</button>
+
+						<input id="searchbar" type="text" class="form-control"  name="term" placeholder="Narrow your search">
 					</div>
-				</form>
-				<button id="submitButton" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search"></span> Search</button>
-				<table id="newJobs" class="table table-striped">
-					<div>
+					<table class="table table-striped" style="margin-bottom: 0px">
 						<tr>
-							<th>Job</th>
-							<th>Wage</th>
-							<th>Description</th>
+							<th style="width:10%">#</th>
+							<th style="width:50%">Jobs</th>
+							<th>Compensation</th>
 						</tr>
+					</table>
+					<div class="tableContainer">
+						<table id="newJobs" class="table table-striped">
+							<% var count = 1 %>
+							<% for (var i = 0; i < jobs.length; i++) { %>
+							<% var job = jobs[i]; %>
+							<% if (job.isCompleted == false || job.isCompleted == null) { %>
+							<tr class="clickable-row" onclick=<%= "redirect('" + job._id + "')" %>>
+								<th style="width:10%"><%= count %></th>
+								<th style="width:50%"><%= job.title %></th>
+								<th><%= job.compensation %></th>
+							</tr>
+							<% count += 1 %>
+							<% } %>
+							<% } %>
+						</table>
 					</div>
-				</table>
+
+				</form>
+				
 			</div>
-
+		</div>
 		</div>
 
-
-			 
-		</div>
 		
-		<!--jquery cdn-->
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+
+
+
+	</div>
+
+	<!--jquery cdn-->
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
 	</body>
-</html>
+	</html>

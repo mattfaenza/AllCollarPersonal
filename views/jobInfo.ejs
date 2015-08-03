@@ -23,23 +23,39 @@
 				<ul id="nav-link" class="nav nav-pills">
 				  <li><a href="/dashboard">Dashboard</a></li>
 				  <li><a href="/profile">Profile Settings</a></li>
-			   	  <li><a href="/search">Search for a Job</a></li>
+			   	  <li class="active"><a href="/search">Search for a Job</a></li>
 				  <li><a href="#">Admin Access</a></li>
 				  <li><a href="/login">Logout</a></li>			  
 				</ul><br>
 			</div>
 			
 			<div id="outContainer">
-				<div id="contactInfo" class="container-fluid well span6">
-					<h4>Contact Us</h4></br>
+				<div id="jobInfo-contactInfo" class="well span6">
+					<h4><b>Contact Us</b></h4></br>
 					Tel:
 					<p id="tel"><%= jobInfo.tel %></p>
 					Email:
 					<p id="email"><%= jobInfo.email %></p>
 				</div>
 
-				<div id="inContainer" class="container-fluid well span6">
+				<!-- <form id="resume" action="demo_form.asp">
+					<input type="file" name="resume" accept=""></input>
+					<input type="submit" onclick="upload()"></input>
+				</form> -->
+
+				<div id="jobInfo-inContainer" class="container-fluid well span6">
+					<form id="resume" enctype="multipart/form-data" action=<%= '/upload/' + jobInfo._id %> method="post">
+						<label for="pic">Attach Your Resume:</label>
+						<input type="file" name="resume"></input>
+						<button type="submit">Submit</button>
+					</form>
+					<div>
+						<% for (var i = 0; i < uploadedResumes.length; i++) { %>
+							<span style="margin-right: 5px"><%= uploadedResumes[i] %></span>
+						<% } %>
+					</div>
 					<div id="details">
+						<h4><b>Job Details</b></h4></br>
 						Title:
 						<P id="name"><%= jobInfo.title %></p></br></br>
 						Description:

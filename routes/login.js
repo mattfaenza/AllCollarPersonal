@@ -3,6 +3,7 @@ var app = express();
 var router = express.Router();
 var path = require('path');
 var passport = require('passport');
+var auth = require('../config/authentication');
 
 router.get('/', function(req, res) {
     res.render('login'); // load the login.ejs file

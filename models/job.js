@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var fs = require('fs');
 
 var jobSchema = new mongoose.Schema({
 	id: String,
@@ -14,7 +15,10 @@ var jobSchema = new mongoose.Schema({
 	isPositionFilled: Boolean,
 	//the username of the user that has been hired - a foreign key for username
 	userHired: String, //another username foreign key
-	isCompleted: Boolean
+	isCompleted: Boolean,
+	tel: { type: Number, max: 10, min: 9 },
+	//can we not use the email from the user schema??
+	email: String
 });
 
 // on every save, add the date
@@ -43,9 +47,53 @@ jobSchema.methods.dudify = function() {
   return this.title;
 };	
 
+// Gets all the job data and renders the ejs
+var getJobData = function (res, req) {
+	var Job;
+	if (mongoose.models.jobs) {
+		Job = mongoose.model('jobs');
+	} else {
+		Job = mongoose.model('jobs', jobSchema);
+	}
+
+	Job.find(function(err, jobs) {
+		res.render('dashboard.ejs', {
+            "jobs" : jobs,
+            "user" : req.user
+        });
+	})
+};
+
+// Gets the information about the request job and renders the ejs
+var getJobInfo = function (res, req) {
+	var files = [];
+	try {
+		files = fs.readdirSync('upload/' + req.params.id + '/' + req.user.username);
+	} catch ( e ) {
+		// It is okay if it errors here, since no folders exist
+	}
+
+	var Job;
+	if (mongoose.models.jobs) {
+		Job = mongoose.model('jobs');
+	} else {
+		Job = mongoose.model('jobs', jobSchema);
+	}
+
+	Job.findOne({"_id":req.params.id},function(err, job) {
+		res.render('jobInfo.ejs', {
+			"jobInfo" : job,
+			"uploadedResumes" : files 
+		});
+	});
+}
+
 
 //Compiling Schema into a Model
 var Job = mongoose.model('Job', jobSchema);
 
 // make this available to our users in our Node applications
 module.exports = Job;
+module.exports.getJobData = getJobData;
+module.exports.getJobInfo = getJobInfo;
+

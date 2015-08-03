@@ -4,49 +4,33 @@ var router = express.Router();
 var path = require('path');
 var mongoose = require('mongoose');
 
-var dashboard = require('../models/dashboard');
+var dashboard = require('../models/dashboard'),
+	job = require('../models/job');
 
+var isAuthenticated = require('../config/authentication');
+
+router.use(isAuthenticated);
 
 /* GET home page. */
-router.get('/', function(req, res){
-	var dir = path.resolve('./html/dashboard.html');
-	res.sendFile(dir);
+router.get('/', isAuthenticated, function(req, res){
+	job.getJobData(res, req);	// render the dashboard ejs
 });
 
-router.get('/profile', function(req, res){
-	var dir = path.resolve('./html/profile.html');
-	res.sendFile(dir);
+router.get('/profile', isAuthenticated, function(req, res){
+	res.redirect('/users');
 });
 
-router.get('/search', function(req, res){
-	var dir = path.resolve('./html/search.html');
-	res.sendFile(dir);
+router.get('/search', isAuthenticated, function(req, res){
+	res.render('search.ejs');
 });
 
-router.get('/logout', function(req, res){
-	var dir = path.resolve('./html/login.html');
-	res.sendFile(dir);
+
+router.get('/jobs', isAuthenticated, function(req, res){
+	job.getJobData(res, req);	// render the dashboard ejs
 });
 
-router.get('/applicant', function(req, res){
-	var dir = path.resolve('./html/applicant.html');
-	res.sendFile(dir);
-});
-// var asd = document.getElementById("submitButton");
-// console.log(asd);
-
-
-router.get('/jobs', function(req, res){
-	dashboard.getJobData(res);
-});
-
-router.get('/jobInfo/:id', function(req, res){
-	var dir = path.resolve('./html/jobInfo.html');
-	res.sendFile(dir);
-});
-
-router.get('/jobData/:id', function(req, res){
-	dashboard.getJobInfo(res, req.params.id);
+router.get('/jobInfo/:id', isAuthenticated, function(req, res){
+	job.getJobInfo(res, req);
 });
 
 module.exports = router;

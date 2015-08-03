@@ -96,6 +96,8 @@ var dash = require('./routes/dashboard');
 var search = require('./routes/search');
 var jobs = require('./routes/jobs');
 var applicant = require('./routes/applicant');
+var logout = require('./routes/logout');
+var upload = require('./routes/upload');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -112,11 +114,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', login);
 app.use('/login', login);
 app.use('/register', register);
-app.use('/users', users);
+app.use('/profile', users);
 app.use('/dashboard', dash);
 app.use('/search', search);
 app.use('/jobs', jobs);
 app.use('/applicant', applicant);
+app.use('/logout', logout);
+app.use('/upload', upload);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

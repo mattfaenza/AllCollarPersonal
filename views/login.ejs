@@ -13,6 +13,23 @@
 	</head>
 
 	<body>
+	<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '404711866388396',
+      xfbml      : true,
+      version    : 'v2.4'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 		<!--html code goes here -->
 		<div id="cont" class="container">
 		
@@ -34,7 +51,12 @@
 					  <label for="pwd">Password:</label>
 					  <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Enter password">
 					</div>
-
+					<div
+					  class="fb-like"
+					  data-share="true"
+					  data-width="450"
+					  data-show-faces="true">
+					</div>
 					<button id="submitButton" type="submit" class="btn btn-primary">Submit</button>
 					<a href="/register" class="btn btn-info" role="button">Register for a new account</a>
 				  </form>

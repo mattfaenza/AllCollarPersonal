@@ -25,6 +25,14 @@
 				  <h6>Forms with *'s are mandatory</h6>
 				  <form action="/register" method="post" class="form-horizontal" role="form">
 					
+				  	<div class="form-group">
+					  <input type="text" class="form-control" id="fname" name="fname" placeholder="First name*">
+					</div>
+
+					<div class="form-group">
+					  <input type="text" class="form-control" id="lname" name="lname" placeholder="Last name *">
+					</div>
+
 					<div class="form-group">
 					  <input type="text" class="form-control" id="username" name="user" placeholder="Username *">
 					</div>
@@ -38,12 +46,12 @@
 					</div>
 					
 					<div class="form-group">
-						<select class="form-control">
-							<option value=1>Select a province</option>
-							<option value=2>Ontario</option>
-							<option value=3>British Columbia</option>
-							<option value=4>Manitoba</option>
-							<option value=5>Quebec</option>
+						<select class="form-control" name="province">
+							<option value="">Select a province</option>
+							<option value="Ontario">Ontario</option>
+							<option value="British Columbia">British Columbia</option>
+							<option value="Manitoba">Manitoba</option>
+							<option value="Quebec">Quebec</option>						
 						</select>
 					</div>
 					

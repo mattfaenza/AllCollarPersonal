@@ -8,8 +8,8 @@ var userSchema = new mongoose.Schema({
 	passwordSalt: String,
 	email: String,
 	name: {
-    first: String,
-    last: { type: String, trim: true }
+	    first: String,
+	    last: { type: String, trim: true }
 	},
 	phoneNumber: { type: Number, max: 10, min: 9 },
 	locale: String,
@@ -51,6 +51,8 @@ userSchema.methods.generateHash = function(password){
 userSchema.methods.isValidPassword = function(password){
 	return bcrypt.compareSync(password, this.passwordHash);
 };
+
+//userSchema.methods.getJobHistory = function(jobIds)
 	
 	
 //Compiling Schema into a Model

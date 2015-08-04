@@ -36,7 +36,8 @@
 				<div class="row-fluid">
 						<ul class="nav">
 							<li>
-								<p id="name" class="info"><%= user.first %>, <%= user.last %></p>
+								Name:
+								<p id="name" class="info"><%= user.name.first %>,<%= user.name.last %></p>
 							</li>
 							<li>
 								Email:
@@ -44,7 +45,7 @@
 							</li>
 							<li>
 								Locale:
-								<p id="locale" class="info"></p>
+								<p id="locale" class="info"><%= user.locale %></p>
 							</li>
 							<li>
 								Rating:
@@ -60,49 +61,29 @@
 
 			<div id="inContainer" class="container-fluid">
 				<div class="col-xs-12">
-				  <form role="form">
+				  <form role="form" method="post">
 				  
 					<div class="form-group">
 					  <label for="email">Email Address</label>
-					  <input type="text" class="form-control" id="email" placeholder="Enter email">
+					  <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">
 					</div>
-					
-					<div class="form-group">
-					  <label for="pwd">Password</label>
-					  <input type="password" class="form-control" id="pwd" placeholder="Enter password">
-					</div>
+					<!-- z -->
 					
 					<div class="form-group">
 					  <label for="phone">Phone</label>
-					  <input type="text" class="form-control" id="phone" placeholder="eg.123-456-7890">
+					  <input type="text" class="form-control" id="phone" name="phone" placeholder="eg.123-456-7890">
 					</div>
 					
 					<div class="form-group">
 						<label for="pselect">Province</label>
-						<select id="pselect" class="form-control">
-							<option value=1>Select a province</option>
-							<option value=2>Ontario</option>
-							<option value=3>British Columbia</option>
-							<option value=4>Manitoba</option>
-							<option value=5>Quebec</option>
+						<select id="pselect" name="province" class="form-control">
+							<option value="">Select a province</option>
+							<option value="Ontario">Ontario</option>
+							<option value="British Columbia">British Columbia</option>
+							<option value="Manitoba">Manitoba</option>
+							<option value="Quebec">Quebec</option>
 						</select>
 					</div>
-					
-					<div class="form-group">
-					  <label for="skills">Skill Description</label>
-					  <textarea type="text" class="form-control" rows="4" id="skills" placeholder="Skill Desc."></textarea>
-					</div>
-					
-					<b>Privacy Settings</b><br>
-					<label class="radio-inline">
-					  <input type="radio" name="optradio">Light
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="optradio">Medium
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="optradio">Heavy
-					</label><br><br>
 					<button id="submitButton" type="submit" class="btn btn-primary">Save Changes</button>
 				  </form>
 				</div>

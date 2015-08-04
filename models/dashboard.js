@@ -16,7 +16,7 @@ var getJobData = function (res) {
 
 	Job.find(function(err, jobs) {
 			res.send(jobs);
-	})
+	});
 
 }
 
@@ -34,6 +34,5 @@ var getJobInfo = function (res, id) {
 }
 // make this available to our users in our Node applications
 module.exports.getJobInfo = getJobInfo;
-
 
 

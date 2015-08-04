@@ -35,26 +35,38 @@
 		<div id="outContainer">
 			<div id="profileInfo" class="container-fluid well span6">
 				<div class="row-fluid">
-						<ul class="nav">
+					<ul class="nav">
 							<li>
-								Name:
-								<p id="name" class="info"><%= user.name.first %>,<%= user.name.last %></p>
+								<!-- First, last name: --> 
+								<p id="name" class="info"><%= "Name: " + user.name.first + "," + user.name.last %></p>
 							</li>
 							<li>
-								Email:
-								<p id="email" class="info"><%= user.email %></p>
+								<!-- Email: -->
+								<p id="email" class="info"><%= "Email: " + user.email %></p>
 							</li>
 							<li>
-								Locale:
-								<p id="locale" class="info"><%= user.locale %></p>
+								<!-- Locale: -->
+								<p id="locale" class="info"><%= "Locale: " + user.locale %></p>
 							</li>
 							<li>
-								Rating:
-								<p id="rating" class="info"></p>
+								<!-- Hunter Rating: -->
+								<% if (user.hunterRating == undefined) {%>
+									<p id="hunterRating" class="info"><%= "Hunter Rating: N/A"%></p>
+								<% } else {%>
+									<p id="hunterRating" class="info"><%= "Hunter Rating: " + user.hunterRating%></p>
+								<% } %>
 							</li>
 							<li>
-								Recent job:
-								<p id="recentJob" class="info"></p>
+								<!-- Employer Rating: -->
+								<% if (user.employerRating == undefined) {%>
+									<p id="employerRating" class="info"><%= "Employer Rating: N/A"%></p>
+								<% } else {%>
+									<p id="employerRating" class="info"><%= "Employer Rating: " + user.employerRating%></p>
+								<% } %>
+							</li>
+							<li>
+								<!-- Recent job: -->
+								<p id="recentJob" class="info"><%= "Recent Job: " + user.jobHistory %></p></br>
 							</li>
 						</ul>
 					</div>

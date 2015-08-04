@@ -16,6 +16,10 @@ router.get('/', isAuthenticated, function(req, res){
 	job.getJobData(res, req);	// render the dashboard ejs
 });
 
+router.get('/profile', isAuthenticated, function(req, res){
+	res.redirect('/users');
+});
+
 router.get('/profile/:id', isAuthenticated, function(req, res){
 	res.redirect('/users/' + req.params.id);
 });

@@ -2,6 +2,7 @@
 	background-color: LightSteelBlue;
 	border-radius: 25px;
     border: 3px solid #778899;
+	padding-top:30px;
 }
 
 #title{
@@ -22,7 +23,7 @@
 
 #profileInfo{
 	width: 300px;
-	height: 200px;
+	height: 450px;
 }
 
 #inContainer{
@@ -102,4 +103,8 @@
 }
 #searchWrapper #searchbar{
 	width: 85%;
+}
+
+.jobform {
+	padding-bottom: 30px;
 }

@@ -28,6 +28,10 @@ router.get('/search', function(req, res){
 	res.sendFile(dir);
 });
 
+router.get('/addJob', sAuthenticated, function(req, res){
+	res.render('addJob.ejs');
+});
+
 router.get('/logout', function(req, res){
 	var dir = path.resolve('./html/login.html');
 	res.sendFile(dir);

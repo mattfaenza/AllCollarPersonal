@@ -12,10 +12,10 @@ var jobSchema = new mongoose.Schema({
 	compensation: String,
 	length: String,
 	applicants: Array, //foreign keys for user:usernames
-	isPositionFilled: Boolean,
+	isPositionFilled: { type: Boolean, default: false },
 	//the username of the user that has been hired - a foreign key for username
 	userHired: String, //another username foreign key
-	isCompleted: Boolean,
+	isCompleted: { type: Boolean, default: false },
 	tel: { type: Number, max: 10, min: 9 },
 	//can we not use the email from the user schema??
 	email: String

@@ -24,6 +24,10 @@ router.get('/search', isAuthenticated, function(req, res){
 	res.render('search.ejs');
 });
 
+router.get('/addJob', sAuthenticated, function(req, res){
+	res.render('addJob.ejs');
+});
+
 
 router.get('/jobs', isAuthenticated, function(req, res){
 	job.getJobData(res, req);	// render the dashboard ejs

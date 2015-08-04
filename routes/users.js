@@ -17,14 +17,14 @@ router.param('username', function(req, res, next, username){
 // /* GET users listing. */
 router.get('/:username', isAuthenticated, function(req, res){
 	console.log(req.username);
-	var user = users.find({username: req.username}, function(err, user){
+	var user = users.findOne({username: req.username}, function(err, user){
 		if (err)
 			return next(err);
 		console.log(user);
-		return user;
+
+		res.render('users', {user : user,
+				     jobs : user.jobsHistory});
 	});
-	res.render('users', {user : user,
-						 jobs : user.jobsHistory});
 
 	/* TODO: call a query to get user with req.userid*/
 });

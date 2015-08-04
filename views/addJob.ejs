@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--our own css-->
+		<link rel="stylesheet" type="text/css" href="./stylesheets/stylesheet.css">
+		
+		<!--bootstrap cdn-->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	</head>
+
+	<body>
+		<!--html code goes here -->
+		<div id="cont" class="container">
+		
+			<div id="titleBox" class="jumbotron">
+				<h1 id="title">Add A Job</h1>
+			</div>
+		
+			<div id="navbar">
+				<ul id="nav-link" class="nav nav-pills">
+				  <li><a href="/dashboard">Dashboard</a></li>
+				  <li><a href="/profile">Profile Settings</a></li>
+			   	  <li><a href="/search">Search for a Job</a></li>
+				  <li class="active"><a href="#">Add a Job</a></li>
+				  <li><a href="/admin">Admin Access</a></li>
+				  <li><a href="/login">Logout</a></li>			  
+				</ul><br>
+			</div>
+					
+			<div id="outContainer">
+				<div id="profileInfo" class="container-fluid well span6">
+					<div class="row-fluid">
+						<ul class="nav">
+							<li>
+								First, last name: 
+								<p id="name" class="info"></p>
+							</li>
+							<li>
+								Email:
+								<p id="email" class="info"></p>
+							</li>
+							<li>
+								Locale:
+								<p id="locale" class="info"></p>
+							</li>
+							<li>
+								Rating:
+								<p id="rating" class="info"></p>
+							</li>
+							<li>
+								Recent job:
+								<p id="recentJob" class="info"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			
+			
+			<div id="inContainer" class="container-fluid">
+				<div class="col-xs-12">
+				<h4><b>Enter Job Details</b></h4>
+				  <form role="form">
+				  
+					<div class="form-group">
+					  <label for="title">Job Title</label>
+					  <input type="text" class="form-control" id="title" placeholder="Enter job title">
+					</div>
+					
+					<div class="form-group">
+					  <label for="skills">Job Description</label>
+					  <textarea type="text" class="form-control" rows="2" id="skills" placeholder="Job Desc."></textarea>
+					</div>
+					
+					<div class="form-group">
+					  <label for="reqs">Job Requirements</label>
+					  <textarea type="text" class="form-control" rows="2" id="reqs" placeholder="Job Reqs."></textarea>
+					</div>					
+					
+					<div class="form-group">
+					  <label for="comp">Compensation</label>
+					  <input type="text" class="form-control" id="comp" placeholder="Enter min. wage">
+					</div>
+					
+					<div class="form-group">
+					  <label for="time">Work Duration</label>
+					  <input type="text" class="form-control" id="time" placeholder="Enter work duration">
+					</div>
+					
+					<div class="form-group">
+						<label for="pselect">Work Location</label>
+						<select id="pselect" class="form-control">
+							<option value=1>Select a province</option>
+							<option value=2>Ontario</option>
+							<option value=3>British Columbia</option>
+							<option value=4>Manitoba</option>
+							<option value=5>Quebec</option>
+						</select>
+					</div>
+				  </form>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		
+		<!--jquery cdn-->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<script></script>
+	</body>
+</html>

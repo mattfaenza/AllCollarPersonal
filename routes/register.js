@@ -11,7 +11,7 @@ var passport = require('passport');
 
 router.get('/', function(req, res){
 // render the page and pass in any flash data if it exists
-	res.render('register', { message: req.flash('registerMessage') });
+	res.render('register', { registerMessage: req.flash('registerMessage') });
 });
 
 

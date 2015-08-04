@@ -6,7 +6,7 @@ var passport = require('passport');
 var auth = require('../config/authentication');
 
 router.get('/', function(req, res) {
-    res.render('login'); // load the login.ejs file
+    res.render('login', {loginMessage: req.flash('loginMessage')}); // load the login.ejs file
 });
 
 // process the login form

@@ -15,12 +15,16 @@
 	<body>
 		<!--html code goes here -->
 		<div id="cont" class="container">
-		
+			
 			<div id="titleBox" class="jumbotron">
 				<h1 id="title">Welcome to AllCollar</h1>
 			</div>
 			
 			<div id="infoBox" class="row">
+				<% if ( loginMessage.length > 0 ) { %>
+				  
+				<div class="alert alert-danger"><p>Message: <%= loginMessage %> </p></div>
+				<% } %>
 				<div class="col-xs-5 col-xs-offset-4 text-center">
 				  <h4>Sign in to an existing account</h4>
 				  <form action="/login" method="post" role="form">

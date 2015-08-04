@@ -25,8 +25,9 @@
 			  <li class="active"><a href="#">Dashboard</a></li>
 			  <li><a href="/profile">Profile Settings</a></li>
 		   	  <li><a href="/search">Search for a Job</a></li>
+		   	  <li><a href="addJob">Post a Job</a></li>
 			  <li><a href="/admin">Admin Access</a></li>
-			  <li><a href="/logout">Logout</a></li>			  
+			  <li><a href="/logout">Logout</a></li>	
 			</ul><br>
 		</div>
 
@@ -48,11 +49,19 @@
 							</li>
 							<li>
 								<!-- Hunter Rating: -->
-								<p id="hunterRating" class="info"><%= "Hunter Rating: " + user.hunterRating %></p>
+								<% if (user.hunterRating == undefined) {%>
+									<p id="hunterRating" class="info"><%= "Hunter Rating: N/A"%></p>
+								<% } else {%>
+									<p id="hunterRating" class="info"><%= "Hunter Rating: " + user.hunterRating%></p>
+								<% } %>
 							</li>
 							<li>
 								<!-- Employer Rating: -->
-								<p id="employerRating" class="info"><%= "Employer Rating: " + user.employerRating %></p>
+								<% if (user.employerRating == undefined) {%>
+									<p id="employerRating" class="info"><%= "Employer Rating: N/A"%></p>
+								<% } else {%>
+									<p id="employerRating" class="info"><%= "Employer Rating: " + user.employerRating%></p>
+								<% } %>
 							</li>
 							<li>
 								<!-- Recent job: -->
@@ -69,22 +78,6 @@
 						<th style="width:50%">New Jobs</th>
 						<th>Compensation</th>
 					</tr>
-				</table></br>
-				
-		
-				<table id="jobStatus" class="table table-striped">
-					<tr>
-						<th>#</th>
-						<th>Jobs You Listed</th>
-						<th>Applicant</th>
-					</tr>
-				</table></br>
-
-				<table id="applicationStatus" class="table table-striped">
-					<tr>
-						<th>#</th>
-						<th>Jobs Applied To</th>
-						<th>Status</th>
 				</table>
 				<div class="tableContainer">
 					<table id="newJobs" class="table table-striped">
@@ -92,7 +85,7 @@
 						<% for (var i = 0; i < jobs.length; i++) { %>
 							<% var job = jobs[i]; %>
 							<% if (job.isCompleted == false || job.isCompleted == null) { %>
-								<tr class="clickable-row" onclick=<%= "redirect('" + job._id + "')" %>>
+								<tr class="clickable-row" onclick=<%= "redirectJob('" + job._id + "')" %>>
 									<th style="width:10%"><%= count %></th>
 									<th style="width:50%"><%= job.title %></th>
 									<th><%= job.compensation %></th>
@@ -116,7 +109,7 @@
 						<% var count = 1 %>
 						<% for (var i = 0; i < user.jobApps.length; i++) { %>
 							<% var job = user.jobApps[i]; %>
-							<tr class="clickable-row" onclick=<%= "redirect('" + job._id + "')" %>>
+							<tr class="clickable-row" onclick=<%= "redirectJob('" + job._id + "')" %>>
 								<th style="width:10%"><%= count %></th>
 								<th style="width:50%"><%= job.title %></th>
 							<% if (job.isCompleted) { %>
@@ -130,6 +123,32 @@
 							<% } %>
 							</tr>
 							<% count += 1 %>
+						<% } %>
+					</table>
+				</div>
+
+				<table class="table table-striped" style="margin-bottom: 0px">
+					<tr>
+						<th style="width:10%">#</th>
+						<th style="width:50%">Posted Jobs</th>
+						<th>Applicants</th>
+					</tr>
+				</table>
+				<div class="tableContainer">
+					<table id="jobPost" class="table table-striped">
+						<% var count = 1 %>
+						<% for (var i = 0; i < postedJobs.length; i++) { %>
+							<% var job = postedJobs[i]; %>
+								<tr  class="clickable-row">
+									<th style="width:10%"><%= count %></th>
+									<th style="width:50%" class="job-item" onclick=<%= "redirectJob('" + job._id + "')" %>><%= job.title %></th>
+									<th>
+									<% for (var j = 0; j < job.applicants.length; j++) { %>
+										<span class="user-item" style="margin-right: 5px" class="clickable" onclick=<%= "redirectUser('" + job.applicants[j] + "')" %>><%= job.applicants[j] %></span>
+							   		<% } %> 
+							   		</th>
+								</tr>
+								<% count += 1 %>
 						<% } %>
 					</table>
 				</div>
@@ -148,45 +167,13 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
 		<script>
-// <<<<<<< HEAD
-			$(document).ready(function(){
-				$.get('http://localhost:5000/dashboard/jobs', function(data) {
-					var count = 1;
-					var newJobs = $('#newJobs');
-					for (var i = 0; i < data.length; i++) {
+			function redirectJob(id) {
+				window.document.location = "/dashboard/jobInfo/" + id;
+			}
 
-						if (data[i].isCompleted == false) {
-							var newEntry = $('<tr class="clickable-row"><th style="width:10%"></th><th style="width:50%"></th><th></th></tr>'),
-								headers = newEntry.children(),
-								th_one = headers.eq(0),
-								th_two = headers.eq(1),
-								th_three = headers.eq(2);
-
-							
-							th_one.text(count);
-							th_two.text(data[i].title);
-							th_three.text(data[i].compensation);
-							newEntry.data('id', data[i]['_id']);
-							newJobs.append(newEntry);
-							count += 1;
-						}
-
-					}
-
-					$(".clickable-row").click(function() {
-						window.document.location = "/dashboard/jobInfo/" + $(this).data('id');
-					});
-				});
-
-
-
-				
-			});
-// =======
-// 			function redirect(id) {
-// 				window.document.location = "/dashboard/jobInfo/" + id;
-// 			}
-// >>>>>>> alda-branch
+			function redirectUser(id) {
+				window.document.location = "/dashboard/profile/" + id;
+			}
 		</script>
 	</body>
 </html>

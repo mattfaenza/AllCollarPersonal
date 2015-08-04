@@ -9,7 +9,7 @@ var isAuthenticated = require('../config/authentication');
 router.use(isAuthenticated);
 
 router.get('/', isAuthenticated, function(req, res){
-	res.render('', {user : req.user});
+	res.render('profile', {user : req.user});
 });
 
 router.post('/', isAuthenticated, function(req, res){

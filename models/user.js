@@ -11,7 +11,7 @@ var userSchema = new mongoose.Schema({
 	    first: String,
 	    last: { type: String, trim: true }
 	},
-	phoneNumber: { type: Number, max: 10, min: 9 },
+	phoneNumber: Number,
 	locale: String,
 	//should be represented as a file
 	resume: String,
@@ -24,7 +24,9 @@ var userSchema = new mongoose.Schema({
 	//Rating as an employee - avergaed
 	hunterRating: { type: Number, max: 0, min: 5 },
 	//Rating as an employer - averaged
-	employerRating: { type: Number, max: 0, min: 5 }
+	employerRating: { type: Number, max: 0, min: 5 },
+	//list of jobs post by user
+	jobPost: Array
 	});
 
 // on every save, add the date

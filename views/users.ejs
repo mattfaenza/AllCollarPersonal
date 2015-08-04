@@ -36,15 +36,15 @@
 						<ul class="nav">
 							<li>
 								First, last name: 
-								<p id="name" class="info"></p>
+								<p id="name" class="info"><%= user.name.first %>, <%= user.name.last %></p>
 							</li>
 							<li>
 								Email:
-								<p id="email" class="info"></p>
+								<p id="email" class="info"><%= user.email %></p>
 							</li>
 							<li>
 								Locale:
-								<p id="locale" class="info"></p>
+								<p id="locale" class="info"><%= user.locale %> </p>
 							</li>
 							<li>
 								Rating:
@@ -68,32 +68,30 @@
 					
 					<div class="panel panel-info">
 					  <div class="panel-heading">Full Name (First, Last)</div>
+						<p><%= user.name.first %> <%= user.name.last %></p>
 					  <div class="panel-body"></div>
 					</div>
 					
 					<div class="panel panel-info">
 					  <div class="panel-heading">Email</div>
+					  	<p><%= user.email %></p>
 					  <div class="panel-body"></div>
 					</div>
 					
 					<div class="panel panel-info">
 					  <div class="panel-heading">Phone Number</div>
-					  <div class="panel-body"></div>
-					</div>
-					
-					<div class="panel panel-info">
-					  <div class="panel-heading">Address</div>
-					  <div class="panel-body"></div>
-					</div>
-					
-					<div class="panel panel-info">
-					  <div class="panel-heading">Phone Number</div>
+					  	<p><%= user.phoneNumber %></p>
 					  <div class="panel-body"></div>
 					</div>
 					
 					<table id="applicationStatus" class="table table-striped">
 						<tr>
 							<th>Recent Jobs</th>
+							<% if (jobs) { %>
+								<% jobs.forEach(function(job){ %>
+									<li><%= job %> </li>
+								<% }); %>
+							<% } %>
 							<th>Rating</th>
 						</tr>
 					</table>

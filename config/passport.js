@@ -53,13 +53,13 @@ module.exports = function(passport) {
                             // create the user
                             var newUser = new User();
 
-                            // set the user's  credentials
+                            // set the user's  credentialss
+                            newUser.name.first = req.body.fname;
+                            newUser.name.last = req.body.lname;
                             newUser.username = username;
-                            console.log(username);
                             newUser.email = req.body.email;
-                            console.log(newUser.email);
                             newUser.passwordHash = newUser.generateHash(password);
-                            console.log(newUser.passwordHash);
+                            newUser.locale = req.body.province;
                             // save the user
                             newUser.save(function(err) {
                                 if (err)

@@ -1,28 +1,41 @@
 var express = require('express');
 var router = express.Router();
 
-var auth = require('../config/authentication');
+var users = require('../models/user');
+
+var isAuthenticated = require('../config/authentication');
 
 
-router.use(auth);
+router.use(isAuthenticated);
 
-router.param('userid', function(req, res, next, userid){
-	console.log('user id is ' + userid);
-	req.userid = userid;
+router.param('username', function(req, res, next, username){
+	console.log('user id is ' + username);
+	req.username = username;
 	next();
 });
 
-/* GET users listing. */
-router.get('/:userid', auth, function(req, res){
-	res.send('hello '+ req.userid);
-	/* TODO: call a query to get user with req.userid*/
-});
+// /* GET users listing. */
+// router.get('/:username', isAuthenticated, function(req, res){
+// 	// console.log(req.username);
+// 	// var user = users.find({username: req.username}, function(err, user){
+// 	// 	if (err)
+// 	// 		return next(err);
+// 	// 	console.log(user);
+// 	// 	return user;
+// 	// });
+// 	// res.render('users', {user : user,
+// 	// 					 jobs : user.jobsHistory});
 
-router.get('/', auth ,function(req,res){
+// 	// /* TODO: call a query to get user with req.userid*/
+// });
+
+router.get('/', isAuthenticated ,function(req,res){
 	/* Should redirect to the current user's profile if an id isn't specified*/
-	res.render('profile', { user : req.user});
-	//res.send("hello");
-	//res.redirect('/users/(current user id)')
+	//res.send(req.user.username)
+	res.render('users', {user : req.user,
+							 jobs : req.user.jobsHistory});
+	// res.send("hello");
+	// res.redirect('/users/(current user id)')
 });
 
 module.exports = router;

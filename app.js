@@ -87,15 +87,14 @@ app.set('view engine', 'ejs');
 
 
  // load our routes and pass in our app and fully configured passport
-//require('./routes.js')(app, passport);
 
 var login = require('./routes/login');
 var register = require('./routes/register');
 var users = require('./routes/users');
 var dash = require('./routes/dashboard');
+var profile = require('./routes/profile')
 var search = require('./routes/search');
 var jobs = require('./routes/jobs');
-var applicant = require('./routes/applicant');
 var logout = require('./routes/logout');
 var upload = require('./routes/upload');
 var admin = require('./routes/admin');
@@ -115,11 +114,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', login);
 app.use('/login', login);
 app.use('/register', register);
-app.use('/profile', users);
+app.use('/users', users);
+app.use('/profile', profile);
 app.use('/dashboard', dash);
 app.use('/search', search);
 app.use('/jobs', jobs);
-app.use('/applicant', applicant);
 app.use('/logout', logout);
 app.use('/upload', upload);
 app.use('/admin', admin);

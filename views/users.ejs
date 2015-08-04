@@ -36,7 +36,7 @@
 						<ul class="nav">
 							<li>
 								First, last name: 
-								<p id="name" class="info"><%= user.name.first %>, <%= user.name.last %></p>
+								<p id="name" class="info"><%= user.name == undefined ? "undefined" : user.name.first %>, <%= user.name == undefined ? "undefined" : user.name.last %></p>
 							</li>
 							<li>
 								Email:
@@ -68,7 +68,7 @@
 					
 					<div class="panel panel-info">
 					  <div class="panel-heading">Full Name (First, Last)</div>
-						<p><%= user.name.first %> <%= user.name.last %></p>
+						<p><%= user.name == undefined ? "undefined" : user.name.first  %> <%= user.name == undefined ? "undefined" : user.name.last %></p>
 					  <div class="panel-body"></div>
 					</div>
 					

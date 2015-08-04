@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<!--our own css-->
-		<link rel="stylesheet" type="text/css" href="./stylesheets/stylesheet.css">
+		<link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css">
 		
 		<!--bootstrap cdn-->
 		<!-- Latest compiled and minified CSS -->
@@ -23,47 +23,19 @@
 		<div id="navbar">
 			<ul id="nav-link" class="nav nav-pills">
 			  <li><a href="/dashboard">Dashboard</a></li>
-			  <li><a href="/profile">Profile Settings</a></li>
+			  <li class="active"><a href="/users">Profile</a></li>
 		   	  <li><a href="/search">Search for a Job</a></li>
-			  <li><a href="#">Admin Access</a></li>
 			  <li><a href="/login">Logout</a></li>			  
 			</ul><br>
 		</div>
 
-		<div id="outContainer">
-			<div id="profileInfo" class="container-fluid well span6">
-				<div class="row-fluid">
-						<ul class="nav">
-							<li>
-								First, last name: 
-								<p id="name" class="info"><%= user.name == undefined ? "undefined" : user.name.first %>, <%= user.name == undefined ? "undefined" : user.name.last %></p>
-							</li>
-							<li>
-								Email:
-								<p id="email" class="info"><%= user.email %></p>
-							</li>
-							<li>
-								Locale:
-								<p id="locale" class="info"><%= user.locale %> </p>
-							</li>
-							<li>
-								Rating:
-								<p id="rating" class="info"></p>
-							</li>
-							<li>
-								Recent job:
-								<p id="recentJob" class="info"></p>
-							</li>
-						</ul>
-					</div>
-			</div>
-
+		<div id="outContainer">	
 			<div id="inContainer" class="container-fluid">
 				<div class="col-xs-12">
 				  <form role="form">
 					
-					<a href="link to the resume goes here" class="btn btn-info" role="button" download>
-					  Click to download the applicant resume
+					<a href="/profile" class="btn btn-info" role="button" >
+					  Profile Settings
 					</a></br></br>					
 					
 					<div class="panel panel-info">
@@ -128,6 +100,6 @@
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	</body>
 </html>

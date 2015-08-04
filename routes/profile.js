@@ -15,7 +15,7 @@ router.get('/', isAuthenticated, function(req, res){
 router.post('/', isAuthenticated, function(req, res){
 	var query = {username: req.user.username};
 	var updates = {email: req.body.email,
-				   phone: req.body.phone,
+				   phoneNumber: req.body.phone,
 				   locale: req.body.province};
 	var options = {upsert: true, new: true};
 	users.findOneAndUpdate(query, updates, options, function(err, res){

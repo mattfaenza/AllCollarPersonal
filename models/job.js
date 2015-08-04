@@ -36,16 +36,7 @@ jobSchema.pre('save', function(next) {
   next();
 });	
 
-
-// custom method to add string to end of title
-// you can create more important methods like title validations or formatting
-// you can also do queries and find similar jobs 
-jobSchema.methods.dudify = function() {
-  // add some stuff to the users title
-  this.title = this.title + '-dude'; 
-
-  return this.title;
-};	
+	
 
 // Gets all the job data and renders the ejs
 var getJobData = function (res, req) {

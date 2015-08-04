@@ -11,7 +11,7 @@ var userSchema = new mongoose.Schema({
 	    first: String,
 	    last: { type: String, trim: true }
 	},
-	phoneNumber: Number,
+	phoneNumber: String,
 	locale: String,
 	//should be represented as a file
 	resume: String,
@@ -44,9 +44,6 @@ userSchema.pre('save', function(next) {
   next();
 });	
 
-// custom method to add string to end of name
-// you can create more important methods like name validations or formatting
-// you can also do queries and find similar users 
 userSchema.methods.generateHash = function(password){
 	return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
 };

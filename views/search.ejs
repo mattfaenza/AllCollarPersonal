@@ -35,31 +35,39 @@
 			<div id="profileInfo" class="container-fluid well span6">
 				<div class="row-fluid">
 					<ul class="nav">
-						<li>
-							<!-- First, last name: --> 
-							<p id="name" class="info"><%= "Name: " + user.name.first + "," + user.name.last %></p>
-						</li>
-						<li>
-							<!-- Email: -->
-							<p id="email" class="info"><%= "Email: " + user.email %></p>
-						</li>
-						<li>
-							<!-- Locale: -->
-							<p id="locale" class="info"><%= "Locale: " + user.locale %></p>
-						</li>
-						<li>
-							<!-- Hunter Rating: -->
-							<p id="hunterRating" class="info"><%= "Hunter Rating: " + user.hunterRating %></p>
-						</li>
-						<li>
-							<!-- Employer Rating: -->
-							<p id="employerRating" class="info"><%= "Employer Rating: " + user.employerRating %></p>
-						</li>
-						<li>
-							<!-- Recent job: -->
-							<p id="recentJob" class="info"><%= "Recent Job: " + user.jobHistory %></p></br>
-						</li>
-					</ul>
+							<li>
+								<!-- First, last name: --> 
+								<p id="name" class="info"><%= "Name: " + user.name.first + "," + user.name.last %></p>
+							</li>
+							<li>
+								<!-- Email: -->
+								<p id="email" class="info"><%= "Email: " + user.email %></p>
+							</li>
+							<li>
+								<!-- Locale: -->
+								<p id="locale" class="info"><%= "Locale: " + user.locale %></p>
+							</li>
+							<li>
+								<!-- Hunter Rating: -->
+								<% if (user.hunterRating == undefined) {%>
+									<p id="hunterRating" class="info"><%= "Hunter Rating: N/A"%></p>
+								<% } else {%>
+									<p id="hunterRating" class="info"><%= "Hunter Rating: " + user.hunterRating%></p>
+								<% } %>
+							</li>
+							<li>
+								<!-- Employer Rating: -->
+								<% if (user.employerRating == undefined) {%>
+									<p id="employerRating" class="info"><%= "Employer Rating: N/A"%></p>
+								<% } else {%>
+									<p id="employerRating" class="info"><%= "Employer Rating: " + user.employerRating%></p>
+								<% } %>
+							</li>
+							<li>
+								<!-- Recent job: -->
+								<p id="recentJob" class="info"><%= "Recent Job: " + user.jobHistory %></p></br>
+							</li>
+						</ul>
 				</div>
 			</div>
 			<div id="inContainer" class="container-fluid">

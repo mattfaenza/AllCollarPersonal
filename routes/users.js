@@ -15,19 +15,19 @@ router.param('username', function(req, res, next, username){
 });
 
 // /* GET users listing. */
-// router.get('/:username', isAuthenticated, function(req, res){
-// 	// console.log(req.username);
-// 	// var user = users.find({username: req.username}, function(err, user){
-// 	// 	if (err)
-// 	// 		return next(err);
-// 	// 	console.log(user);
-// 	// 	return user;
-// 	// });
-// 	// res.render('users', {user : user,
-// 	// 					 jobs : user.jobsHistory});
+router.get('/:username', isAuthenticated, function(req, res){
+	console.log(req.username);
+	var user = users.find({username: req.username}, function(err, user){
+		if (err)
+			return next(err);
+		console.log(user);
+		return user;
+	});
+	res.render('users', {user : user,
+						 jobs : user.jobsHistory});
 
-// 	// /* TODO: call a query to get user with req.userid*/
-// });
+	/* TODO: call a query to get user with req.userid*/
+});
 
 router.get('/', isAuthenticated ,function(req,res){
 	/* Should redirect to the current user's profile if an id isn't specified*/

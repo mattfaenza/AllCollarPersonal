@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--our own css-->
+		<link rel="stylesheet" type="text/css" href="./stylesheets/stylesheet.css">
+		
+		<!--bootstrap cdn-->
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	</head>
+
+	<body>
+		<!--html code goes here -->
+		<div id="cont" class="container">
+		
+			<div id="titleBox" class="jumbotron">
+				<h1 id="title">Add A Job</h1>
+			</div>
+		
+			<div id="navbar">
+				<ul id="nav-link" class="nav nav-pills">
+				  <li><a href="/dashboard">Dashboard</a></li>
+				  <li><a href="/profile">Profile Settings</a></li>
+			   	  <li><a href="/search">Search for a Job</a></li>
+			   	  <li class="active"><a href="#">Post a Job</a></li>
+				  <li><a href="/admin">Admin Access</a></li>
+				  <li><a href="/login">Logout</a></li>			  
+				</ul><br>
+			</div>
+					
+		
+			
+			<div id="inContainer" class="container-fluid">
+				<div class="col-xs-12">
+				<h4><b>Enter Job Details</b></h4>
+				  <form role="form" action="/addJob" method="post">
+				  
+					<div class="form-group">
+					  <label for="title">Job Title</label>
+					  <input name="title" type="text" class="form-control" id="title" placeholder="Enter job title">
+					</div>
+					
+					<div class="form-group">
+					  <label for="skills">Job Description</label>
+					  <textarea name="desc" type="text" class="form-control" rows="2" id="skills" placeholder="Job Desc."></textarea>
+					</div>
+					
+					<div class="form-group">
+					  <label for="reqs">Job Requirements</label>
+					  <textarea name="req" type="text" class="form-control" rows="2" id="reqs" placeholder="Job Reqs."></textarea>
+					</div>					
+					
+					<div class="form-group">
+					  <label for="comp">Compensation</label>
+					  <input name="compensation" type="text" class="form-control" id="comp" placeholder="Enter min. wage">
+					</div>
+					
+					<div class="form-group">
+					  <label for="time">Work Duration</label>
+					  <input name="duration" type="text" class="form-control" id="time" placeholder="Enter work duration">
+					</div>
+
+					<div class="form-group">
+					  <label for="tel">Telephone</label>
+					  <input name="tel" type="tel" class="form-control" id="tel" placeholder="Enter a 10 digit phone number">
+					</div>
+					
+					<div class="form-group">
+					  <label for="time">Email</label>
+					  <input name="email" type="email" class="form-control" id="email" placeholder="Enter your e-mail address">
+					</div>
+
+					<div class="form-group">
+						<label for="pselect">Work Location</label>
+						<select name="place" id="pselect" class="form-control">
+							<option disabled selected>Select a province</option>
+							<option value="Ontario">Ontario</option>
+							<option value="British Columbia">British Columbia</option>
+							<option value="Manitoba">Manitoba</option>
+							<option value="Quebec">Quebec</option>
+						</select>
+					</div>
+					<button id="submitButton" type="submit" class="btn btn-primary">Submit Job</button>
+				  </form>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		
+		<!--jquery cdn-->
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+		<script></script>
+	</body>
+</html>

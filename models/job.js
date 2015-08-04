@@ -16,7 +16,7 @@ var jobSchema = new mongoose.Schema({
 	//the username of the user that has been hired - a foreign key for username
 	userHired: String, //another username foreign key
 	isCompleted: Boolean,
-	tel: { type: Number, max: 10, min: 9 },
+	tel: Number,
 	//can we not use the email from the user schema??
 	email: String
 });
@@ -92,7 +92,7 @@ var getJobInfo = function (res, req) {
 		Job = mongoose.model('jobs', jobSchema);
 	}
 
-	console.log(allFiles);
+	
 
 	Job.findOne({"_id":req.params.id},function(err, job) {
 		res.render('jobInfo.ejs', {

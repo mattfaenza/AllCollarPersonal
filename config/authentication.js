@@ -3,7 +3,6 @@
 var isAuthenticated = function (req, res, next) {
     // if user is authenticated in the session, carry on 
     if (req.isAuthenticated()){
-        console.log("logged in ");
         return next();
     }
 

@@ -1,6 +1,6 @@
 
 module.exports = function(app, passport) {
-
+ 
 //Login
     app.get('/', function(req, res) {
         res.render('index.ejs'); // load the index.ejs file
